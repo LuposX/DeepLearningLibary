@@ -359,13 +359,23 @@ class NeuralNetwork:
         """
         print("Predicting")
         print("--------------------")
-        pred_data = []
-        for i in range(0, self.nn_architecture[0]["layer_size"]):
-            tmp_input = input("Enter " + str(i) + "value: ")
-            pred_data.append(tmp_input)
 
-        self.full_forward(np.asarray([pred_data], dtype=float))
-        print("Predicted Output: ", self.output_model)
+        running = True
+        while(running):
+            pred_data = []
+            for i in range(0, self.nn_architecture[0]["layer_size"]):
+                tmp_input = input("Enter " + str(i) + " value: ")
+                pred_data.append(tmp_input)
+
+            self.full_forward(np.asarray([pred_data], dtype=float))
+            print("Predicted Output: ", self.output_model)
+            print(" ")
+
+            running = input('Enter "exit" if you want to exit. Else press "enter".')
+            if running == "exit" or running == "Exit":
+                running = False
+            else:
+                running = True
 
 
 if __name__ == "__main__":
