@@ -353,11 +353,25 @@ class NeuralNetwork:
                 self.backprop(self.y[idx])
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
+    def predict(self):
+        """
+        Used for predicting with the neural network
+        """
+        print("Predicting")
+        print("--------------------")
+        pred_data = []
+        for i in range(0, self.nn_architecture[0]["layer_size"]):
+            tmp_input = input("Enter " + str(i) + "value: ")
+            pred_data.append(tmp_input)
+
+        self.full_forward(np.asarray([pred_data], dtype=float))
+        print("Predicted Output: ", self.output_model)
+
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[0, 1, 1], [1, 1, 0], [0, 1, 0]], dtype=float)
-    y = np.array([[1], [1], [1]], dtype=float)
+    x = np.array([[0, 1, 1], [1, 1, 0], [0, 1, 0], [0, 0, 0]], dtype=float)
+    y = np.array([[1], [1], [1], [0]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
@@ -366,4 +380,5 @@ if __name__ == "__main__":
                        {"layer_type": "output_layer", "layer_size": 1, "activation_function": "sigmoid"}]
 
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
-    NeuralNetwork_Inst.train(how_often=10, epochs=20)
+    NeuralNetwork_Inst.train(how_often=1, epochs=20)
+    NeuralNetwork_Inst.predict()
