@@ -85,6 +85,7 @@ class NeuralNetwork:
             "layer_size"], 'Check the number of input Neurons and "X".'  # check if the first element in "x" has the right shape
         assert len(y[0]) == nn_architecture[-1][
             "layer_size"], 'Check the number of output Neurons and "Y".'  # check if the first element in "y" has the right shape
+        assert len(x) == len(y), "Check that X and Y have the corresponding values."
 
     # mean square root
     def loss(self, y: List[float], y_hat: List[float]) -> List[float]:
@@ -123,7 +124,7 @@ class NeuralNetwork:
         else:
             raise Exception("Activation function not supported!")
 
-    def communication(self, i: int, how_often: int = 10) -> None:
+    def communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float], how_often: int = 10) -> None:
         """
         Gets executed from the method "train". Communicates information
         about the current status of training progress.
@@ -139,12 +140,12 @@ class NeuralNetwork:
         -------
         None
         """
-        if i % how_often == 0:
-            print("For Iteration #" + str(i))
-            print("Input: " + str(self.input))
-            print("Actual Output: " + str(self.y))
+        if curr_epoch % how_often == 0:
+            print("For iteration/trainings-example: #" + str(curr_epoch) + "/#"+ str(curr_trainingsdata))
+            print("Input: " + str(data))
+            print("Actual Output: " + str(target))
             print("Predicted Output: " + str(self.output_model))
-            print("Loss: " + str(self.loss(self.y, self.output_model)))
+            print("Loss: " + str(self.loss(y=target, y_hat=self.output_model)))
             print("Value of last weight change: " + str(self.weight_change))
             print("\n")
 
@@ -207,7 +208,7 @@ class NeuralNetwork:
 
         return self.weights
 
-    def activate_neuron(self, x: List[float], layer: Dict, save_layer_cache: bool = True) -> List[float]:
+    def activate_neuron(self, x: List[float], layer: Dict) -> List[float]:
         """
         Gets executed from the method "forward" and "full_forward".
         Activates the neurons in the current layer with the specified activation function.
@@ -218,8 +219,6 @@ class NeuralNetwork:
             This are the values which get activated.
         layer: Dict
              A Dictionary with different attributes about the current layer.
-        save_layer_cache:
-            Disable it if you don't want to cache the output of a single step of forward propagation.
         Returns
         -------
         List
@@ -229,29 +228,25 @@ class NeuralNetwork:
         if layer["activation_function"] == "relu":
             temp_acti = self.relu(x)
 
-            if save_layer_cache:
-                # the name of the key of the dict is the index of current layer
-                idx_name = self.nn_architecture.index(layer)
-                tmp_dict = {"a" + str(idx_name): temp_acti}
-                self.layer_cache.update(tmp_dict)
+            # the name of the key of the dict is the index of current layer
+            idx_name = self.nn_architecture.index(layer)
+            self.layer_cache.update({"a" + str(idx_name): temp_acti})
 
             return temp_acti
 
         elif layer["activation_function"] == "sigmoid":
             temp_acti = self.sigmoid(x)
 
-            if save_layer_cache:
-                # the name of the key of the dict is the index of current layer
-                idx_name = self.nn_architecture.index(layer)
-                tmp_dict = {"a" + str(idx_name): temp_acti}
-                self.layer_cache.update(tmp_dict)
+            # the name of the key of the dict is the index of current layer
+            idx_name = self.nn_architecture.index(layer)
+            self.layer_cache.update({"a" + str(idx_name): temp_acti})
 
             return temp_acti
 
         else:
             raise Exception("Activation function not supported!")
 
-    def forward(self, weight: List[float], x: List[float], layer: Dict, save_layer_cache: bool = True) -> List[float]:
+    def forward(self, weight: List[float], x: List[float], layer: Dict) -> List[float]:
         """
         Gets executed from the method "full_forward". This method make´s one
         forward propagation step.
@@ -264,8 +259,6 @@ class NeuralNetwork:
             The Input from the current layer which gets multiplicated with the weights and summed up.
         layer : Dict
             A Dictionary with different attributes about the current layer.
-        save_layer_cache: bool
-            Disable it if you don't want to cache the output of a single step of forward propagation.
 
         Returns
         -------
@@ -280,12 +273,12 @@ class NeuralNetwork:
         tmp_dict = {"z" + str(idx_name): curr_layer}
         self.layer_cache.update(tmp_dict)   # append the "z" value | not activated value
 
-        curr_layer = self.activate_neuron(curr_layer, layer, save_layer_cache)
+        curr_layer = self.activate_neuron(curr_layer, layer)
 
         return curr_layer
 
     # TODO: "full_forward" is work in progress
-    def full_forward(self) -> List[float]:
+    def full_forward(self, data):
         """
         Gets executed from the method "forward_backprop". Makes the full forward propagation
         through the whole Architecture of the Neural Network.
@@ -301,16 +294,16 @@ class NeuralNetwork:
             self.logger.debug("Current-index (full_forward methode): " + str(idx))
 
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
-                self.layer_cache.update({"z0": self.input})
-                self.layer_cache.update({"a0": self.input})
-                self.curr_layer = self.forward(self.weights[idx], self.input, self.nn_architecture[idx + 1])  # "idx + 1" to fix issue regarding activation function
+                self.layer_cache.update({"z0": data})
+                self.layer_cache.update({"a0": data})
+                self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1])  # "idx + 1" to fix issue regarding activation function
             else:
                 self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1])
 
-        return self.curr_layer
+        self.output_model = self.curr_layer
 
     # TODO: "backprop" is work in progress
-    def backprop(self) -> None:  # application of the chain rule to find derivative
+    def backprop(self, target: List[float]) -> None:  # application of the chain rule to find derivative
         """
         Gets executed from the method "forward_backprop". This method handels
         the backpropagation of the Neural Network.
@@ -326,7 +319,7 @@ class NeuralNetwork:
                 # calculating the error term
                 if layer["layer_type"] == "output_layer":
                     temp_idx = "z" + str(idx)
-                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * self.loss_derivative(y=self.y, y_hat=self.output_model)
+                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * self.loss_derivative(y=target, y_hat=self.output_model)
                 else:
                     temp_idx = "z" + str(idx)
                     error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]).T * np.dot(self.weights[idx], error_term)
@@ -336,18 +329,6 @@ class NeuralNetwork:
 
                 self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change)  # updating weight
 
-    # TODO: "forward_backprop" is work in progress
-    def forward_backprop(self) -> None:
-        """
-        Gets executed from the method "train". This method combines forward propagation
-        with backwards propagation.
-
-        Returns
-        -------
-        None
-        """
-        self.output_model = self.full_forward()
-        self.backprop()
 
     # TODO: "train" is work in progress
     def train(self, how_often, epochs=20) -> None:
@@ -366,15 +347,17 @@ class NeuralNetwork:
         None
         """
         self.logger.info("Train-method executed")
-        for i in range(epochs):
-            self.forward_backprop()
-            self.communication(i, how_often)
+        for curr_epoch in range(epochs):
+            for idx, trainings_data in enumerate(x):
+                self.full_forward(trainings_data)
+                self.backprop(self.y[idx])
+                self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[0, 1, 1]], dtype=float)
-    y = np.array([[1]], dtype=float)
+    x = np.array([[0, 1, 1], [1, 1, 0], [0, 1, 0]], dtype=float)
+    y = np.array([[1], [1], [1]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
@@ -382,5 +365,5 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu"},
                        {"layer_type": "output_layer", "layer_size": 1, "activation_function": "sigmoid"}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 1, 5)
-    NeuralNetwork_Inst.train(2, 14)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
+    NeuralNetwork_Inst.train(how_often=10, epochs=20)
