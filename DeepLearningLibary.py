@@ -110,7 +110,7 @@ class NeuralNetwork:
     def linear(self, x: List[float]) -> List[float]:
         return x
 
-    def z_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
+    def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
         if layer["activation_function"] == "linear":
             return self.linear(curr_layer)
 
@@ -188,7 +188,7 @@ class NeuralNetwork:
 
         return logger
 
-    # TODO: "init_weights" is work in progress. 
+    # TODO: "init_weights" is work in progress.
     # TODO: "init_weights" init bias.
     def init_weights(self) -> List[float]:
         """
@@ -225,23 +225,13 @@ class NeuralNetwork:
         List
             Outputs a List with activated values/neurons.
         """
-        if layer["activation_function"] == "linear":
-            temp_acti = self.linear(x)
 
-            if save_layer_cache:  # condition for gradient  checking. We dont want gradient checking to mess up the cache
-                # the name of the key of the dict is the index of current layer
-                idx_name = self.nn_architecture.index(layer) + 1
-                tmp_dict = {"a" + str(idx_name): temp_acti}
-                self.layer_cache.update(tmp_dict)
-
-            return temp_acti
-
-        elif layer["activation_function"] == "relu":
+        if layer["activation_function"] == "relu":
             temp_acti = self.relu(x)
 
             if save_layer_cache:
                 # the name of the key of the dict is the index of current layer
-                idx_name = self.nn_architecture.index(layer) + 1
+                idx_name = self.nn_architecture.index(layer)
                 tmp_dict = {"a" + str(idx_name): temp_acti}
                 self.layer_cache.update(tmp_dict)
 
@@ -252,7 +242,7 @@ class NeuralNetwork:
 
             if save_layer_cache:
                 # the name of the key of the dict is the index of current layer
-                idx_name = self.nn_architecture.index(layer) + 1
+                idx_name = self.nn_architecture.index(layer)
                 tmp_dict = {"a" + str(idx_name): temp_acti}
                 self.layer_cache.update(tmp_dict)
 
@@ -283,17 +273,12 @@ class NeuralNetwork:
             List with values from the output of the one step forward propagation.
         """
 
-        self.logger.debug("X-shape (forward methode): " + str(x.shape))
-        self.logger.debug("Weight-shape (forward methode): " + str(weight.shape))
-
         curr_layer = np.dot(x, weight)
 
         # the name of the key of the dict is the index of current layer
-        idx_name = self.nn_architecture.index(layer) + 1  # "+ 1" because of the input layer
+        idx_name = self.nn_architecture.index(layer)
         tmp_dict = {"z" + str(idx_name): curr_layer}
         self.layer_cache.update(tmp_dict)   # append the "z" value | not activated value
-
-        self.logger.debug("Output-shape (forward methode): " + str(curr_layer.shape))
 
         curr_layer = self.activate_neuron(curr_layer, layer, save_layer_cache)
 
@@ -311,31 +296,16 @@ class NeuralNetwork:
             List with the values of the output Layer.
         """
         self.logger.info("full_forward executed")
-        self.layer_cache = {} # delete cache used from previous iteration
-        for idx, layer in enumerate(self.nn_architecture):
+        self.layer_cache = {}  # delete cache used from previous iteration
+        for idx in range(0, len(self.nn_architecture) - 1):
             self.logger.debug("Current-index (full_forward methode): " + str(idx))
 
-            if layer["layer_type"] == "input_layer":  # if we are in the input layer
-                tmp_dict = {"z0": self.input}
-                self.layer_cache.update(tmp_dict)
-                
-                if layer["activation_function"] == "linear":
-                    curr_layer = self.linear(self.input)
-                    tmp_dict = {"a0": curr_layer}
-                    self.layer_cache.update(tmp_dict)
-                else:
-                    raise Exception("The Input layer only supports a linear activation function!")
-
-                self.curr_layer = self.forward(self.weights[idx], curr_layer, layer)
-
-            elif layer["layer_type"] == "hidden_layer":
-                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, layer)
-            
-            elif layer["layer_type"] == "output_layer":
-                pass
-                
+            if self.nn_architecture[idx]["layer_type"] == "input_layer":
+                self.layer_cache.update({"z0": self.input})
+                self.layer_cache.update({"a0": self.input})
+                self.curr_layer = self.forward(self.weights[idx], self.input, self.nn_architecture[idx + 1])  # "idx + 1" to fix issue regarding activation function
             else:
-                raise Exception("Unknown Layer type")
+                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1])
 
         return self.curr_layer
 
@@ -353,35 +323,18 @@ class NeuralNetwork:
         for idx, layer in reversed(list(enumerate(nn_architecture))):  # reversed because we go backwards
             if not layer["layer_type"] == "input_layer":  # if we are in the input layer
 
-                tmp_idx = str("a" + str(idx))
-                d_a = self.loss_derivative(y=self.y, y_hat=self.output_model)  # partial derivative: dJ/da
+                # calculating the error term
+                if layer["layer_type"] == "output_layer":
+                    temp_idx = "z" + str(idx)
+                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * self.loss_derivative(y=self.y, y_hat=self.output_model)
+                else:
+                    temp_idx = "z" + str(idx)
+                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]).T * np.dot(self.weights[idx], error_term)
 
-                tmp_idx = str("z" + str(idx))
-                d_z = self.z_derivative(layer, self.layer_cache[tmp_idx])  # partial derivative: da/dz
+                temp_idx = "a" + str(idx)
+                self.weight_change = error_term.T * self.layer_cache[temp_idx]
 
-                tmp_idx = str("a" + str(idx - 1))
-                d_w = self.layer_cache[tmp_idx]  # partial derivative: dz/dw | (idx * 2) because we save double we save "z" value and "a" value
-
-                self.w_d = d_a.T * d_z.T * d_w  # chain rule
-
-                self.logger.debug("Current-Weight-shape: " + str(self.weights[idx - 1].shape))
-                self.logger.debug("Current-Weight_derivative-shape: " + str(self.w_d.shape))
-
-                self.weight_change = self.alpha * self.w_d
-
-                #print("-------------------------------------")
-                #print("da change:", d_a)
-                #print("dz change:", d_z)
-                #print("dw change:", d_w)
-                #print("weight change:", self.weight_change)
-                #print("weight shape: ", self.weights[idx - 1].shape)
-                #print("-------------------------------------")
-
-                self.weights[idx - 1] = self.weights[idx - 1] - self.weight_change.T  # updating weight
-
-        # for later use. Currently its "sgd" and not "gd"
-        # sum_derivative = sum_d + w_d
-        # self.weights = self.alpha * sum_derivative
+                self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change)  # updating weight
 
     # TODO: "forward_backprop" is work in progress
     def forward_backprop(self) -> None:
@@ -414,8 +367,8 @@ class NeuralNetwork:
         """
         self.logger.info("Train-method executed")
         for i in range(epochs):
-            self.communication(i, how_often)
             self.forward_backprop()
+            self.communication(i, how_often)
 
 
 if __name__ == "__main__":
@@ -424,11 +377,10 @@ if __name__ == "__main__":
     y = np.array([[1]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
-    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "linear"},
+    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
                        {"layer_type": "hidden_layer", "layer_size": 5, "activation_function": "relu"},
                        {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu"},
                        {"layer_type": "output_layer", "layer_size": 1, "activation_function": "sigmoid"}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.8, 5)
-    NeuralNetwork_Inst.train(2, 10)
-    print(NeuralNetwork_Inst.weights)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 1, 5)
+    NeuralNetwork_Inst.train(2, 14)
