@@ -16,7 +16,7 @@ import os  # used for creating a folder
 
 
 class NeuralNetwork:
-    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int) -> None:
+    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int, custom_weights: bool = False) -> None:
         """
         Constructor of the class Neural Network.
 
@@ -39,7 +39,6 @@ class NeuralNetwork:
         """
         self.level_of_debugging = logging.INFO
         self.logger: object = self.init_logging(self.level_of_debugging)  # initializing of logging
-
         # Dimension checks
         self.check_input_output_dimension(x, y, nn_architecture)
 
@@ -53,8 +52,9 @@ class NeuralNetwork:
 
         self.nn_architecture: List[Dict] = nn_architecture
 
+        self.bias: List = []
         self.weights: List = []  # np.array([])
-        self.init_weights()  # initializing of weights
+        self.init_weights(custom_weights)  # initializing of weights
         self.w_d: List = []  # gardient in perspective to the weight
 
         self.curr_layer: List = []
@@ -191,7 +191,7 @@ class NeuralNetwork:
 
     # TODO: "init_weights" is work in progress.
     # TODO: "init_weights" init bias.
-    def init_weights(self) -> List[float]:
+    def init_weights(self, custom_weights: bool) -> List[float]:
         """
         Gets executed from the constructor "__init__".
         Initializes the weight in the whole Neural Network.
@@ -203,8 +203,16 @@ class NeuralNetwork:
         """
         self.logger.info("init_weights executed")
         for idx in range(0, len(self.nn_architecture) - 1):  # "len() - 1" because the output layer doesn't has weights
-            weights_temp = 2 * np.random.rand(self.nn_architecture[idx]["layer_size"], self.nn_architecture[idx + 1]["layer_size"]) - 1
-            self.weights.append(weights_temp)
+
+            if not custom_weights:
+                weights_temp = 2 * np.random.rand(self.nn_architecture[idx]["layer_size"], self.nn_architecture[idx + 1]["layer_size"]) - 1
+                self.weights.append(weights_temp)
+
+            bias_temp = np.ones(self.nn_architecture[idx + 1]["layer_size"])
+            self.bias.append(bias_temp)
+
+        if custom_weights:
+            self.weights = custom_weights_data
 
         return self.weights
 
@@ -246,7 +254,7 @@ class NeuralNetwork:
         else:
             raise Exception("Activation function not supported!")
 
-    def forward(self, weight: List[float], x: List[float], layer: Dict) -> List[float]:
+    def forward(self, weight: List[float], x: List[float], layer: Dict, idx: int) -> List[float]:
         """
         Gets executed from the method "full_forward". This method make´s one
         forward propagation step.
@@ -266,7 +274,7 @@ class NeuralNetwork:
             List with values from the output of the one step forward propagation.
         """
 
-        curr_layer = np.dot(x, weight)
+        curr_layer = np.dot(x, weight) + self.bias[idx]
 
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
@@ -296,9 +304,9 @@ class NeuralNetwork:
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
                 self.layer_cache.update({"z0": data})
                 self.layer_cache.update({"a0": data})
-                self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1])  # "idx + 1" to fix issue regarding activation function
+                self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1], idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
-                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1])
+                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1], idx=idx)
 
         self.output_model = self.curr_layer
 
@@ -380,8 +388,8 @@ class NeuralNetwork:
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[0, 1, 1], [1, 1, 0], [0, 1, 0], [0, 0, 0]], dtype=float)
-    y = np.array([[1], [1], [1], [0]], dtype=float)
+    x = np.array([[0, 0, 0]], dtype=float)
+    y = np.array([[1]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
@@ -391,4 +399,4 @@ if __name__ == "__main__":
 
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
     NeuralNetwork_Inst.train(how_often=1, epochs=20)
-    NeuralNetwork_Inst.predict()
+    # NeuralNetwork_Inst.predict()
