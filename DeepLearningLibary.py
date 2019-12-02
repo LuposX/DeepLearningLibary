@@ -406,9 +406,10 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 2, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 2, "activation_function": "sigmoid"}]
 
-    weights_data = np.array([[0.3, -0.2, 0.8, -0.6, 0.5, 0.7], [0.2, 0.1, 0.4, -0.4, 0.3, 0.5]], dtype=float)
+    weights_data = [np.array([[0.3, 0.8, 0.5], [-0.2, -0.6, 0.7]], dtype=float), np.array([[0.2, 0.4, 0.3], [0.1, -0.4, 0.9]], dtype=float)]
+    weights_data = weights_data
 
-    # , custom_weights=True, custom_weights_data=weights_data
+    #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
     NeuralNetwork_Inst.train(how_often=1, epochs=80)
     # NeuralNetwork_Inst.predict()
