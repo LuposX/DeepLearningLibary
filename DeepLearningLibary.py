@@ -44,15 +44,15 @@ class NeuralNetwork:
 
         np.random.seed(seed)  # set seed for reproducibility
 
-        self.input: List = x
+        self.input: List = self.add_bias(x)
         self.y: List = y
+
         self.output_model: float = np.zeros(y.shape)
         self.alpha: float = alpha
         self.layer_cache = {"z0": self.input}  # later used for derivatives
 
         self.nn_architecture: List[Dict] = nn_architecture
 
-        self.bias: List = []
         self.weights: List = []  # np.array([])
         self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
         self.w_d: List = []  # gardient in perspective to the weight
@@ -61,6 +61,10 @@ class NeuralNetwork:
         self.weight_change: List = []
 
         self.logger.info("__init__ executed")
+
+    def add_bias(self, x) -> List[float]:
+        x = np.insert(x, 0, 1)
+        return x
 
     def check_input_output_dimension(self, x, y, nn_architecture):
         """
@@ -205,11 +209,9 @@ class NeuralNetwork:
         for idx in range(0, len(self.nn_architecture) - 1):  # "len() - 1" because the output layer doesn't has weights
 
             if not custom_weights:
-                weights_temp = 2 * np.random.rand(self.nn_architecture[idx]["layer_size"], self.nn_architecture[idx + 1]["layer_size"]) - 1
+                # "self.nn_architecture[idx]["layer_size"] + 1" "+ 1" because we also have a bias term
+                weights_temp = 2 * np.random.rand(self.nn_architecture[idx]["layer_size"] + 1, self.nn_architecture[idx + 1]["layer_size"]) - 1
                 self.weights.append(weights_temp)
-
-            bias_temp = np.ones(self.nn_architecture[idx + 1]["layer_size"])
-            self.bias.append(bias_temp)
 
         if custom_weights:
             self.weights = custom_weights_data
@@ -274,7 +276,7 @@ class NeuralNetwork:
             List with values from the output of the one step forward propagation.
         """
 
-        curr_layer = np.dot(x, weight) + self.bias[idx]
+        curr_layer = np.dot(x, weight)
 
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
@@ -306,6 +308,7 @@ class NeuralNetwork:
                 self.layer_cache.update({"a0": data})
                 self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1], idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
+                self.curr_layer = self.add_bias(self.curr_layer)
                 self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1], idx=idx)
 
         self.output_model = self.curr_layer
@@ -357,7 +360,13 @@ class NeuralNetwork:
         self.logger.info("Train-method executed")
         for curr_epoch in range(epochs):
             for idx, trainings_data in enumerate(x):
-                self.full_forward(trainings_data)
+
+                trainings_data_with_bias = self.add_bias(trainings_data)
+
+                if len(trainings_data_with_bias.shape) == 1:  # check if we have a case of (M,). We want (M,1)
+                    trainings_data_with_bias = np.expand_dims(trainings_data_with_bias, axis=-1)
+
+                self.full_forward(trainings_data_with_bias.T)
                 self.backprop(self.y[idx])
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
@@ -370,6 +379,7 @@ class NeuralNetwork:
 
         running = True
         while(running):
+
             pred_data = []
             for i in range(0, self.nn_architecture[0]["layer_size"]):
                 tmp_input = input("Enter " + str(i) + " value: ")
@@ -398,6 +408,7 @@ if __name__ == "__main__":
 
     weights_data = np.array([[0.3, -0.2, 0.8, -0.6, 0.5, 0.7], [0.2, 0.1, 0.4, -0.4, 0.3, 0.5]], dtype=float)
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=1, epochs=20)
+    # , custom_weights=True, custom_weights_data=weights_data
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
+    NeuralNetwork_Inst.train(how_often=1, epochs=80)
     # NeuralNetwork_Inst.predict()
