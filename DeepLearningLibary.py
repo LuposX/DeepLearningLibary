@@ -16,7 +16,7 @@ import os  # used for creating a folder
 
 
 class NeuralNetwork:
-    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int, custom_weights: bool = False) -> None:
+    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int, custom_weights_data: List = [], custom_weights: bool = False) -> None:
         """
         Constructor of the class Neural Network.
 
@@ -54,7 +54,7 @@ class NeuralNetwork:
 
         self.bias: List = []
         self.weights: List = []  # np.array([])
-        self.init_weights(custom_weights)  # initializing of weights
+        self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
         self.w_d: List = []  # gardient in perspective to the weight
 
         self.curr_layer: List = []
@@ -191,7 +191,7 @@ class NeuralNetwork:
 
     # TODO: "init_weights" is work in progress.
     # TODO: "init_weights" init bias.
-    def init_weights(self, custom_weights: bool) -> List[float]:
+    def init_weights(self, custom_weights: bool, custom_weights_data: List) -> List[float]:
         """
         Gets executed from the constructor "__init__".
         Initializes the weight in the whole Neural Network.
@@ -388,15 +388,16 @@ class NeuralNetwork:
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[0, 0, 0]], dtype=float)
-    y = np.array([[1]], dtype=float)
+    x = np.array([[0.7, 0.6]], dtype=float)
+    y = np.array([[0.9, 0.1]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
-    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
-                       {"layer_type": "hidden_layer", "layer_size": 5, "activation_function": "relu"},
-                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu"},
-                       {"layer_type": "output_layer", "layer_size": 1, "activation_function": "sigmoid"}]
+    nn_architecture = [{"layer_type": "input_layer", "layer_size": 2, "activation_function": "none"},
+                       {"layer_type": "hidden_layer", "layer_size": 2, "activation_function": "sigmoid"},
+                       {"layer_type": "output_layer", "layer_size": 2, "activation_function": "sigmoid"}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
+    weights_data = np.array([[0.3, -0.2, 0.8, -0.6, 0.5, 0.7], [0.2, 0.1, 0.4, -0.4, 0.3, 0.5]], dtype=float)
+
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, custom_weights=True, custom_weights_data=weights_data)
     NeuralNetwork_Inst.train(how_often=1, epochs=20)
     # NeuralNetwork_Inst.predict()
