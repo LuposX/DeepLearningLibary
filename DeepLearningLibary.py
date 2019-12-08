@@ -50,6 +50,7 @@ class NeuralNetwork:
         self.output_model: float = np.zeros(y.shape)
         self.alpha: float = alpha
         self.layer_cache = {}  # later used for derivatives
+        self.error_term_cache = []
 
         self.nn_architecture: List[Dict] = nn_architecture
 
@@ -58,7 +59,7 @@ class NeuralNetwork:
         self.w_d: List = []  # gardient in perspective to the weight
 
         self.curr_layer: List = []
-        self.weight_change: List = []
+        self.weight_change_cache: List = []
 
         self.logger.info("__init__ executed")
 
@@ -96,7 +97,8 @@ class NeuralNetwork:
         return 1 / 2 * (y_hat - y) ** 2
 
     def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
-        return np.array([(y_hat - y)])
+        y = np.array([y]).T
+        return np.array(y_hat - y)
 
     def sigmoid(self, x: List[float]) -> List[float]:
         return 1 / (1 + np.exp(-x))
@@ -117,13 +119,13 @@ class NeuralNetwork:
 
     def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
         if layer["activation_function"] == "linear":
-            return np.array([self.linear(curr_layer)])
+            return np.array(self.linear(curr_layer))
 
         elif layer["activation_function"] == "relu":
-            return np.array([self.relu_derivative(curr_layer)])
+            return np.array(self.relu_derivative(curr_layer))
 
         elif layer["activation_function"] == "sigmoid":
-            return np.array([self.sigmoid_derivative(curr_layer)])
+            return np.array(self.sigmoid_derivative(curr_layer))
 
         else:
             raise Exception("Activation function not supported!")
@@ -243,7 +245,7 @@ class NeuralNetwork:
             if not layer["layer_type"] == "output_layer":
                 tmp_temp_acti_for_chache = self.add_bias(temp_acti)
             else:
-                tmp_temp_acti_for_chache = temp_acti
+                tmp_temp_acti_for_chache = temp_acti.T
 
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
@@ -258,7 +260,7 @@ class NeuralNetwork:
             if not layer["layer_type"] == "output_layer":
                 tmp_temp_acti_for_chache = self.add_bias(temp_acti)
             else:
-                tmp_temp_acti_for_chache = temp_acti
+                tmp_temp_acti_for_chache = temp_acti.T
 
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
@@ -295,7 +297,7 @@ class NeuralNetwork:
         if not layer["layer_type"] == "output_layer":
             tmp_curr_layer_for_chache = self.add_bias(curr_layer)
         else:
-            tmp_curr_layer_for_chache = curr_layer
+            tmp_curr_layer_for_chache = curr_layer.T
 
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
@@ -351,15 +353,23 @@ class NeuralNetwork:
                     temp_idx = "z" + str(idx)
                     d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
                     d_J = self.loss_derivative(y=target, y_hat=self.output_model)
-                    error_term = d_a * d_J
+                    error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
+                    self.error_term_cache.append(error_term)
                 else:
                     temp_idx = "z" + str(idx)
-                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * np.dot(self.weights[idx].T, error_term)
+                    d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
+                    d_J = np.dot(self.weights[idx], self.error_term_cache[-1].T)
+                    error_term = d_a * d_J
+                    self.error_term_cache.append(error_term)
 
-                temp_idx = "a" + str(idx)
-                self.weight_change = error_term * self.layer_cache[temp_idx].T
+                err_temp = error_term.T
+                temp_idx = "a" + str(idx - 1)
+                cache_tmp = self.layer_cache[temp_idx]
+                weight_change = err_temp * cache_tmp
+                self.weight_change_cache.append(weight_change)
 
-                self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change)  # updating weight
+        for idx, layer in reversed(list(enumerate(nn_architecture))):  # reversed because we go backwards
+            self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change_cache[idx])  # updating weight
 
 
     # TODO: "train" is work in progress
