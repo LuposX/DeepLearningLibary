@@ -96,18 +96,19 @@ class NeuralNetwork:
     def loss(self, y: List[float], y_hat: List[float]) -> List[float]:
         return 1 / 2 * (y_hat - y) ** 2
 
+    # TODO: remove round
     def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
         y = np.array([y]).T
-        return np.array(y_hat - y)
+        return np.round(np.array(-y_hat + y), 2)
 
     def sigmoid(self, x: List[float]) -> List[float]:
-        return 1 / (1 + np.exp(-x))
+        return np.round(1 / (1 + np.exp(-x)), 2)
 
     def sigmoid_derivative(self, x: List[float]) -> List[float]:
-        return self.sigmoid(x) * (1 - self.sigmoid(x))
+        return np.round(self.sigmoid(x) * (1 - self.sigmoid(x)), 2)
 
     def relu(self, x: List[float]) -> List[float]:
-        return np.maximum(0, x)
+        return np.round(np.maximum(0, x), 2)
 
     def relu_derivative(self, x: List[float]) -> List[float]:
         x[x <= 0] = 0
@@ -117,15 +118,16 @@ class NeuralNetwork:
     def linear(self, x: List[float]) -> List[float]:
         return x
 
+    # TODO: remove round
     def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
         if layer["activation_function"] == "linear":
-            return np.array(self.linear(curr_layer))
+            return np.round(np.array(self.linear(curr_layer)), 2)
 
         elif layer["activation_function"] == "relu":
-            return np.array(self.relu_derivative(curr_layer))
+            return np.round(np.array(self.relu_derivative(curr_layer)), 2)
 
         elif layer["activation_function"] == "sigmoid":
-            return np.array(self.sigmoid_derivative(curr_layer))
+            return np.round(np.array(self.sigmoid_derivative(curr_layer)), 2)
 
         else:
             raise Exception("Activation function not supported!")
@@ -152,7 +154,7 @@ class NeuralNetwork:
             print("Actual Output: " + str(target))
             print("Predicted Output: " + str(self.output_model))
             print("Loss: " + str(self.loss(y=target, y_hat=self.output_model)))
-            print("Value of last weight change: " + str(self.weight_change))
+            print("Value of last weight change: " + str(self.weight_change_cache[-1]))
             print("\n")
 
     def init_logging(self, level_of_debugging: str) -> object:
@@ -344,6 +346,8 @@ class NeuralNetwork:
         -------
         None
         """
+        self.weight_change_cache = []
+        self.error_term_cache = []
         self.logger.info("Backprop executed")
         for idx, layer in reversed(list(enumerate(nn_architecture))):  # reversed because we go backwards
             if not layer["layer_type"] == "input_layer":  # if we are in the input layer
@@ -354,12 +358,20 @@ class NeuralNetwork:
                     d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
                     d_J = self.loss_derivative(y=target, y_hat=self.output_model)
                     error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
+                    error_term = np.array([[0.055, -0.0868]])
                     self.error_term_cache.append(error_term)
                 else:
                     temp_idx = "z" + str(idx)
-                    d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
-                    d_J = np.dot(self.weights[idx], self.error_term_cache[-1].T)
-                    error_term = d_a * d_J
+                    layer_cache_tmp_drop_bias = np.delete(self.layer_cache[temp_idx], 0, 1)
+                    d_a = self.activation_derivative(layer, layer_cache_tmp_drop_bias)
+
+                    d_J = 0
+                    for item in reversed(self.error_term_cache):
+                        weights_tmp_drop_bias = np.delete(self.weights[idx], 0, 1)
+                        d_J = d_J + np.dot(weights_tmp_drop_bias.T, item.T)
+
+                    error_term = d_a.T * d_J
+                    error_term = error_term.T
                     self.error_term_cache.append(error_term)
 
                 err_temp = error_term.T
@@ -368,8 +380,8 @@ class NeuralNetwork:
                 weight_change = err_temp * cache_tmp
                 self.weight_change_cache.append(weight_change)
 
-        for idx, layer in reversed(list(enumerate(nn_architecture))):  # reversed because we go backwards
-            self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change_cache[idx])  # updating weight
+        for idx, item in reversed(list(enumerate(self.weight_change_cache))):  # reversed because we go backwards
+            self.weights[idx - 1] = self.weights[idx - 1] + (self.alpha * self.weight_change_cache[idx])  # updating weight
 
 
     # TODO: "train" is work in progress
@@ -427,7 +439,7 @@ class NeuralNetwork:
 if __name__ == "__main__":
     # data for nn and target
     x = np.array([[0.7, 0.6]], dtype=float)
-    y = np.array([[0.9, 0.1]], dtype=float)
+    y = np.array([[0, 1]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 2, "activation_function": "none"},
@@ -439,5 +451,5 @@ if __name__ == "__main__":
 
     #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=1, epochs=80)
+    NeuralNetwork_Inst.train(how_often=100, epochs=1000)
     # NeuralNetwork_Inst.predict()
