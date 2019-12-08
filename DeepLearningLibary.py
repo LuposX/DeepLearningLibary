@@ -49,7 +49,7 @@ class NeuralNetwork:
 
         self.output_model: float = np.zeros(y.shape)
         self.alpha: float = alpha
-        self.layer_cache = {"z0": self.input}  # later used for derivatives
+        self.layer_cache = {}  # later used for derivatives
 
         self.nn_architecture: List[Dict] = nn_architecture
 
@@ -63,7 +63,7 @@ class NeuralNetwork:
         self.logger.info("__init__ executed")
 
     def add_bias(self, x) -> List[float]:
-        x = np.insert(x, 0, 1)
+        x = np.array([np.insert(x, 0, 1)])
         return x
 
     def check_input_output_dimension(self, x, y, nn_architecture):
@@ -96,7 +96,7 @@ class NeuralNetwork:
         return 1 / 2 * (y_hat - y) ** 2
 
     def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
-        return y_hat - y
+        return np.array([(y_hat - y)])
 
     def sigmoid(self, x: List[float]) -> List[float]:
         return 1 / (1 + np.exp(-x))
@@ -117,13 +117,13 @@ class NeuralNetwork:
 
     def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
         if layer["activation_function"] == "linear":
-            return self.linear(curr_layer)
+            return np.array([self.linear(curr_layer)])
 
         elif layer["activation_function"] == "relu":
-            return self.relu_derivative(curr_layer)
+            return np.array([self.relu_derivative(curr_layer)])
 
         elif layer["activation_function"] == "sigmoid":
-            return self.sigmoid_derivative(curr_layer)
+            return np.array([self.sigmoid_derivative(curr_layer)])
 
         else:
             raise Exception("Activation function not supported!")
@@ -210,7 +210,8 @@ class NeuralNetwork:
 
             if not custom_weights:
                 # "self.nn_architecture[idx]["layer_size"] + 1" "+ 1" because we also have a bias term
-                weights_temp = 2 * np.random.rand(self.nn_architecture[idx]["layer_size"] + 1, self.nn_architecture[idx + 1]["layer_size"]) - 1
+                weights_temp = 2 * np.random.rand(self.nn_architecture[idx + 1]["layer_size"], self.nn_architecture[idx]["layer_size"] + 1) - 1
+
                 self.weights.append(weights_temp)
 
         if custom_weights:
@@ -238,18 +239,30 @@ class NeuralNetwork:
         if layer["activation_function"] == "relu":
             temp_acti = self.relu(x)
 
+            # add bias to cache when not output layer
+            if not layer["layer_type"] == "output_layer":
+                tmp_temp_acti_for_chache = self.add_bias(temp_acti)
+            else:
+                tmp_temp_acti_for_chache = temp_acti
+
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
-            self.layer_cache.update({"a" + str(idx_name): temp_acti})
+            self.layer_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
 
             return temp_acti
 
         elif layer["activation_function"] == "sigmoid":
             temp_acti = self.sigmoid(x)
 
+            # add bias to cache when not output layer
+            if not layer["layer_type"] == "output_layer":
+                tmp_temp_acti_for_chache = self.add_bias(temp_acti)
+            else:
+                tmp_temp_acti_for_chache = temp_acti
+
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
-            self.layer_cache.update({"a" + str(idx_name): temp_acti})
+            self.layer_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
 
             return temp_acti
 
@@ -276,11 +289,17 @@ class NeuralNetwork:
             List with values from the output of the one step forward propagation.
         """
 
-        curr_layer = np.dot(x, weight)
+        curr_layer = np.dot(weight, x.T)
+
+        # add bias to cache when not output layer
+        if not layer["layer_type"] == "output_layer":
+            tmp_curr_layer_for_chache = self.add_bias(curr_layer)
+        else:
+            tmp_curr_layer_for_chache = curr_layer
 
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
-        tmp_dict = {"z" + str(idx_name): curr_layer}
+        tmp_dict = {"z" + str(idx_name):  tmp_curr_layer_for_chache}
         self.layer_cache.update(tmp_dict)   # append the "z" value | not activated value
 
         curr_layer = self.activate_neuron(curr_layer, layer)
@@ -330,13 +349,15 @@ class NeuralNetwork:
                 # calculating the error term
                 if layer["layer_type"] == "output_layer":
                     temp_idx = "z" + str(idx)
-                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * self.loss_derivative(y=target, y_hat=self.output_model)
+                    d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
+                    d_J = self.loss_derivative(y=target, y_hat=self.output_model)
+                    error_term = d_a * d_J
                 else:
                     temp_idx = "z" + str(idx)
-                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]).T * np.dot(self.weights[idx], error_term)
+                    error_term = self.activation_derivative(layer, self.layer_cache[temp_idx]) * np.dot(self.weights[idx].T, error_term)
 
                 temp_idx = "a" + str(idx)
-                self.weight_change = error_term.T * self.layer_cache[temp_idx]
+                self.weight_change = error_term * self.layer_cache[temp_idx].T
 
                 self.weights[idx - 1] = self.weights[idx - 1] - (self.alpha * self.weight_change)  # updating weight
 
@@ -363,10 +384,7 @@ class NeuralNetwork:
 
                 trainings_data_with_bias = self.add_bias(trainings_data)
 
-                if len(trainings_data_with_bias.shape) == 1:  # check if we have a case of (M,). We want (M,1)
-                    trainings_data_with_bias = np.expand_dims(trainings_data_with_bias, axis=-1)
-
-                self.full_forward(trainings_data_with_bias.T)
+                self.full_forward(trainings_data_with_bias)
                 self.backprop(self.y[idx])
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
@@ -410,6 +428,6 @@ if __name__ == "__main__":
     weights_data = weights_data
 
     #, custom_weights=True, custom_weights_data=weights_data
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, custom_weights=True, custom_weights_data=weights_data)
     NeuralNetwork_Inst.train(how_often=1, epochs=80)
     # NeuralNetwork_Inst.predict()
