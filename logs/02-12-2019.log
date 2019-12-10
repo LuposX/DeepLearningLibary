@@ -1,0 +1,1293 @@
+INFO  - 2019-12-02 17:57:28,526 - ------------------------------------------------
+INFO  - 2019-12-02 17:57:28,526 - Start of the program
+INFO  - 2019-12-02 17:57:28,526 - ------------------------------------------------
+INFO  - 2019-12-02 17:57:28,526 - init_weights executed
+INFO  - 2019-12-02 17:57:28,526 - __init__ executed
+INFO  - 2019-12-02 17:57:28,526 - Train-method executed
+INFO  - 2019-12-02 17:57:28,526 - full_forward executed
+INFO  - 2019-12-02 17:57:28,526 - Backprop executed
+INFO  - 2019-12-02 17:57:28,527 - full_forward executed
+INFO  - 2019-12-02 17:57:28,527 - Backprop executed
+INFO  - 2019-12-02 17:57:28,528 - full_forward executed
+INFO  - 2019-12-02 17:57:28,528 - Backprop executed
+INFO  - 2019-12-02 17:57:28,529 - full_forward executed
+INFO  - 2019-12-02 17:57:28,529 - Backprop executed
+INFO  - 2019-12-02 17:57:28,530 - full_forward executed
+INFO  - 2019-12-02 17:57:28,530 - Backprop executed
+INFO  - 2019-12-02 17:57:28,530 - full_forward executed
+INFO  - 2019-12-02 17:57:28,530 - Backprop executed
+INFO  - 2019-12-02 17:57:28,531 - full_forward executed
+INFO  - 2019-12-02 17:57:28,531 - Backprop executed
+INFO  - 2019-12-02 17:57:28,532 - full_forward executed
+INFO  - 2019-12-02 17:57:28,532 - Backprop executed
+INFO  - 2019-12-02 17:57:28,532 - full_forward executed
+INFO  - 2019-12-02 17:57:28,532 - Backprop executed
+INFO  - 2019-12-02 17:57:28,533 - full_forward executed
+INFO  - 2019-12-02 17:57:28,533 - Backprop executed
+INFO  - 2019-12-02 17:57:28,534 - full_forward executed
+INFO  - 2019-12-02 17:57:28,534 - Backprop executed
+INFO  - 2019-12-02 17:57:28,534 - full_forward executed
+INFO  - 2019-12-02 17:57:28,535 - Backprop executed
+INFO  - 2019-12-02 17:57:28,535 - full_forward executed
+INFO  - 2019-12-02 17:57:28,535 - Backprop executed
+INFO  - 2019-12-02 17:57:28,536 - full_forward executed
+INFO  - 2019-12-02 17:57:28,536 - Backprop executed
+INFO  - 2019-12-02 17:57:28,536 - full_forward executed
+INFO  - 2019-12-02 17:57:28,537 - Backprop executed
+INFO  - 2019-12-02 17:57:28,537 - full_forward executed
+INFO  - 2019-12-02 17:57:28,537 - Backprop executed
+INFO  - 2019-12-02 17:57:28,538 - full_forward executed
+INFO  - 2019-12-02 17:57:28,538 - Backprop executed
+INFO  - 2019-12-02 17:57:28,539 - full_forward executed
+INFO  - 2019-12-02 17:57:28,539 - Backprop executed
+INFO  - 2019-12-02 17:57:28,539 - full_forward executed
+INFO  - 2019-12-02 17:57:28,539 - Backprop executed
+INFO  - 2019-12-02 17:57:28,540 - full_forward executed
+INFO  - 2019-12-02 17:57:28,540 - Backprop executed
+INFO  - 2019-12-02 18:15:15,865 - ------------------------------------------------
+INFO  - 2019-12-02 18:15:15,865 - Start of the program
+INFO  - 2019-12-02 18:15:15,865 - ------------------------------------------------
+INFO  - 2019-12-02 18:15:15,865 - init_weights executed
+INFO  - 2019-12-02 18:15:15,865 - __init__ executed
+INFO  - 2019-12-02 18:15:15,866 - Train-method executed
+INFO  - 2019-12-02 18:15:15,866 - full_forward executed
+INFO  - 2019-12-02 18:15:15,866 - Backprop executed
+INFO  - 2019-12-02 18:15:15,867 - full_forward executed
+INFO  - 2019-12-02 18:15:15,867 - Backprop executed
+INFO  - 2019-12-02 18:15:15,867 - full_forward executed
+INFO  - 2019-12-02 18:15:15,867 - Backprop executed
+INFO  - 2019-12-02 18:15:15,868 - full_forward executed
+INFO  - 2019-12-02 18:15:15,868 - Backprop executed
+INFO  - 2019-12-02 18:15:15,869 - full_forward executed
+INFO  - 2019-12-02 18:15:15,869 - Backprop executed
+INFO  - 2019-12-02 18:15:15,869 - full_forward executed
+INFO  - 2019-12-02 18:15:15,869 - Backprop executed
+INFO  - 2019-12-02 18:15:15,870 - full_forward executed
+INFO  - 2019-12-02 18:15:15,870 - Backprop executed
+INFO  - 2019-12-02 18:15:15,871 - full_forward executed
+INFO  - 2019-12-02 18:15:15,871 - Backprop executed
+INFO  - 2019-12-02 18:15:15,871 - full_forward executed
+INFO  - 2019-12-02 18:15:15,871 - Backprop executed
+INFO  - 2019-12-02 18:15:15,872 - full_forward executed
+INFO  - 2019-12-02 18:15:15,872 - Backprop executed
+INFO  - 2019-12-02 18:15:15,873 - full_forward executed
+INFO  - 2019-12-02 18:15:15,873 - Backprop executed
+INFO  - 2019-12-02 18:15:15,874 - full_forward executed
+INFO  - 2019-12-02 18:15:15,874 - Backprop executed
+INFO  - 2019-12-02 18:15:15,874 - full_forward executed
+INFO  - 2019-12-02 18:15:15,874 - Backprop executed
+INFO  - 2019-12-02 18:15:15,875 - full_forward executed
+INFO  - 2019-12-02 18:15:15,875 - Backprop executed
+INFO  - 2019-12-02 18:15:15,875 - full_forward executed
+INFO  - 2019-12-02 18:15:15,876 - Backprop executed
+INFO  - 2019-12-02 18:15:15,876 - full_forward executed
+INFO  - 2019-12-02 18:15:15,877 - Backprop executed
+INFO  - 2019-12-02 18:15:15,877 - full_forward executed
+INFO  - 2019-12-02 18:15:15,877 - Backprop executed
+INFO  - 2019-12-02 18:15:15,878 - full_forward executed
+INFO  - 2019-12-02 18:15:15,878 - Backprop executed
+INFO  - 2019-12-02 18:15:15,879 - full_forward executed
+INFO  - 2019-12-02 18:15:15,879 - Backprop executed
+INFO  - 2019-12-02 18:15:15,880 - full_forward executed
+INFO  - 2019-12-02 18:15:15,880 - Backprop executed
+INFO  - 2019-12-02 18:51:53,943 - ------------------------------------------------
+INFO  - 2019-12-02 18:51:53,943 - Start of the program
+INFO  - 2019-12-02 18:51:53,944 - ------------------------------------------------
+INFO  - 2019-12-02 18:51:53,944 - init_weights executed
+INFO  - 2019-12-02 18:51:53,944 - __init__ executed
+INFO  - 2019-12-02 18:51:53,944 - Train-method executed
+INFO  - 2019-12-02 18:51:53,944 - full_forward executed
+INFO  - 2019-12-02 18:51:53,944 - Backprop executed
+INFO  - 2019-12-02 18:51:53,945 - full_forward executed
+INFO  - 2019-12-02 18:51:53,945 - Backprop executed
+INFO  - 2019-12-02 18:51:53,945 - full_forward executed
+INFO  - 2019-12-02 18:51:53,946 - Backprop executed
+INFO  - 2019-12-02 18:51:53,946 - full_forward executed
+INFO  - 2019-12-02 18:51:53,946 - Backprop executed
+INFO  - 2019-12-02 18:51:53,947 - full_forward executed
+INFO  - 2019-12-02 18:51:53,947 - Backprop executed
+INFO  - 2019-12-02 18:51:53,947 - full_forward executed
+INFO  - 2019-12-02 18:51:53,947 - Backprop executed
+INFO  - 2019-12-02 18:51:53,948 - full_forward executed
+INFO  - 2019-12-02 18:51:53,948 - Backprop executed
+INFO  - 2019-12-02 18:51:53,949 - full_forward executed
+INFO  - 2019-12-02 18:51:53,949 - Backprop executed
+INFO  - 2019-12-02 18:51:53,949 - full_forward executed
+INFO  - 2019-12-02 18:51:53,949 - Backprop executed
+INFO  - 2019-12-02 18:51:53,950 - full_forward executed
+INFO  - 2019-12-02 18:51:53,950 - Backprop executed
+INFO  - 2019-12-02 18:51:53,951 - full_forward executed
+INFO  - 2019-12-02 18:51:53,951 - Backprop executed
+INFO  - 2019-12-02 18:51:53,951 - full_forward executed
+INFO  - 2019-12-02 18:51:53,951 - Backprop executed
+INFO  - 2019-12-02 18:51:53,952 - full_forward executed
+INFO  - 2019-12-02 18:51:53,952 - Backprop executed
+INFO  - 2019-12-02 18:51:53,953 - full_forward executed
+INFO  - 2019-12-02 18:51:53,953 - Backprop executed
+INFO  - 2019-12-02 18:51:53,953 - full_forward executed
+INFO  - 2019-12-02 18:51:53,953 - Backprop executed
+INFO  - 2019-12-02 18:51:53,954 - full_forward executed
+INFO  - 2019-12-02 18:51:53,954 - Backprop executed
+INFO  - 2019-12-02 18:51:53,954 - full_forward executed
+INFO  - 2019-12-02 18:51:53,955 - Backprop executed
+INFO  - 2019-12-02 18:51:53,955 - full_forward executed
+INFO  - 2019-12-02 18:51:53,955 - Backprop executed
+INFO  - 2019-12-02 18:51:53,956 - full_forward executed
+INFO  - 2019-12-02 18:51:53,956 - Backprop executed
+INFO  - 2019-12-02 18:51:53,956 - full_forward executed
+INFO  - 2019-12-02 18:51:53,956 - Backprop executed
+INFO  - 2019-12-02 18:53:25,816 - ------------------------------------------------
+INFO  - 2019-12-02 18:53:25,816 - Start of the program
+INFO  - 2019-12-02 18:53:25,816 - ------------------------------------------------
+INFO  - 2019-12-02 18:54:32,287 - ------------------------------------------------
+INFO  - 2019-12-02 18:54:32,288 - Start of the program
+INFO  - 2019-12-02 18:54:32,288 - ------------------------------------------------
+INFO  - 2019-12-02 18:54:32,288 - init_weights executed
+INFO  - 2019-12-02 18:54:32,288 - __init__ executed
+INFO  - 2019-12-02 18:54:32,288 - Train-method executed
+INFO  - 2019-12-02 18:54:32,288 - full_forward executed
+INFO  - 2019-12-02 18:54:32,288 - Backprop executed
+INFO  - 2019-12-02 18:54:32,289 - full_forward executed
+INFO  - 2019-12-02 18:54:32,289 - Backprop executed
+INFO  - 2019-12-02 18:54:32,290 - full_forward executed
+INFO  - 2019-12-02 18:54:32,290 - Backprop executed
+INFO  - 2019-12-02 18:54:32,290 - full_forward executed
+INFO  - 2019-12-02 18:54:32,291 - Backprop executed
+INFO  - 2019-12-02 18:54:32,291 - full_forward executed
+INFO  - 2019-12-02 18:54:32,291 - Backprop executed
+INFO  - 2019-12-02 18:54:32,292 - full_forward executed
+INFO  - 2019-12-02 18:54:32,292 - Backprop executed
+INFO  - 2019-12-02 18:54:32,293 - full_forward executed
+INFO  - 2019-12-02 18:54:32,293 - Backprop executed
+INFO  - 2019-12-02 18:54:32,294 - full_forward executed
+INFO  - 2019-12-02 18:54:32,294 - Backprop executed
+INFO  - 2019-12-02 18:54:32,295 - full_forward executed
+INFO  - 2019-12-02 18:54:32,295 - Backprop executed
+INFO  - 2019-12-02 18:54:32,295 - full_forward executed
+INFO  - 2019-12-02 18:54:32,296 - Backprop executed
+INFO  - 2019-12-02 18:54:32,296 - full_forward executed
+INFO  - 2019-12-02 18:54:32,296 - Backprop executed
+INFO  - 2019-12-02 18:54:32,297 - full_forward executed
+INFO  - 2019-12-02 18:54:32,297 - Backprop executed
+INFO  - 2019-12-02 18:54:32,298 - full_forward executed
+INFO  - 2019-12-02 18:54:32,298 - Backprop executed
+INFO  - 2019-12-02 18:54:32,299 - full_forward executed
+INFO  - 2019-12-02 18:54:32,299 - Backprop executed
+INFO  - 2019-12-02 18:54:32,299 - full_forward executed
+INFO  - 2019-12-02 18:54:32,299 - Backprop executed
+INFO  - 2019-12-02 18:54:32,300 - full_forward executed
+INFO  - 2019-12-02 18:54:32,300 - Backprop executed
+INFO  - 2019-12-02 18:54:32,301 - full_forward executed
+INFO  - 2019-12-02 18:54:32,301 - Backprop executed
+INFO  - 2019-12-02 18:54:32,301 - full_forward executed
+INFO  - 2019-12-02 18:54:32,301 - Backprop executed
+INFO  - 2019-12-02 18:54:32,302 - full_forward executed
+INFO  - 2019-12-02 18:54:32,302 - Backprop executed
+INFO  - 2019-12-02 18:54:32,303 - full_forward executed
+INFO  - 2019-12-02 18:54:32,303 - Backprop executed
+INFO  - 2019-12-02 18:57:16,433 - ------------------------------------------------
+INFO  - 2019-12-02 18:57:16,433 - Start of the program
+INFO  - 2019-12-02 18:57:16,433 - ------------------------------------------------
+INFO  - 2019-12-02 18:57:16,433 - init_weights executed
+INFO  - 2019-12-02 18:57:16,433 - __init__ executed
+INFO  - 2019-12-02 18:57:16,433 - Train-method executed
+INFO  - 2019-12-02 18:57:16,433 - full_forward executed
+INFO  - 2019-12-02 18:57:28,504 - ------------------------------------------------
+INFO  - 2019-12-02 18:57:28,504 - Start of the program
+INFO  - 2019-12-02 18:57:28,504 - ------------------------------------------------
+INFO  - 2019-12-02 18:58:06,743 - ------------------------------------------------
+INFO  - 2019-12-02 18:58:06,743 - Start of the program
+INFO  - 2019-12-02 18:58:06,743 - ------------------------------------------------
+INFO  - 2019-12-02 18:58:06,743 - init_weights executed
+INFO  - 2019-12-02 18:58:06,743 - __init__ executed
+INFO  - 2019-12-02 18:58:06,744 - Train-method executed
+INFO  - 2019-12-02 18:58:06,744 - full_forward executed
+INFO  - 2019-12-02 20:19:37,649 - ------------------------------------------------
+INFO  - 2019-12-02 20:19:37,649 - Start of the program
+INFO  - 2019-12-02 20:19:37,649 - ------------------------------------------------
+INFO  - 2019-12-02 20:19:37,649 - init_weights executed
+INFO  - 2019-12-02 20:19:37,649 - __init__ executed
+INFO  - 2019-12-02 20:19:37,649 - Train-method executed
+INFO  - 2019-12-02 20:19:37,649 - full_forward executed
+INFO  - 2019-12-02 20:32:27,131 - ------------------------------------------------
+INFO  - 2019-12-02 20:32:27,131 - Start of the program
+INFO  - 2019-12-02 20:32:27,131 - ------------------------------------------------
+INFO  - 2019-12-02 20:32:27,131 - init_weights executed
+INFO  - 2019-12-02 20:32:27,131 - __init__ executed
+INFO  - 2019-12-02 20:32:27,131 - Train-method executed
+INFO  - 2019-12-02 20:32:27,131 - full_forward executed
+INFO  - 2019-12-02 20:33:32,592 - ------------------------------------------------
+INFO  - 2019-12-02 20:33:32,593 - Start of the program
+INFO  - 2019-12-02 20:33:32,593 - ------------------------------------------------
+INFO  - 2019-12-02 20:33:32,593 - init_weights executed
+INFO  - 2019-12-02 20:33:32,593 - __init__ executed
+INFO  - 2019-12-02 20:33:32,593 - Train-method executed
+INFO  - 2019-12-02 20:33:32,593 - full_forward executed
+INFO  - 2019-12-02 20:33:59,449 - ------------------------------------------------
+INFO  - 2019-12-02 20:33:59,449 - Start of the program
+INFO  - 2019-12-02 20:33:59,449 - ------------------------------------------------
+INFO  - 2019-12-02 20:33:59,450 - init_weights executed
+INFO  - 2019-12-02 20:33:59,450 - __init__ executed
+INFO  - 2019-12-02 20:33:59,450 - Train-method executed
+INFO  - 2019-12-02 20:33:59,450 - full_forward executed
+INFO  - 2019-12-02 20:34:05,620 - ------------------------------------------------
+INFO  - 2019-12-02 20:34:05,620 - Start of the program
+INFO  - 2019-12-02 20:34:05,620 - ------------------------------------------------
+INFO  - 2019-12-02 20:34:05,620 - init_weights executed
+INFO  - 2019-12-02 20:34:05,620 - __init__ executed
+INFO  - 2019-12-02 20:34:05,621 - Train-method executed
+INFO  - 2019-12-02 20:34:05,621 - full_forward executed
+INFO  - 2019-12-02 20:34:19,400 - ------------------------------------------------
+INFO  - 2019-12-02 20:34:19,400 - Start of the program
+INFO  - 2019-12-02 20:34:19,401 - ------------------------------------------------
+INFO  - 2019-12-02 20:34:19,401 - init_weights executed
+INFO  - 2019-12-02 20:34:19,401 - __init__ executed
+INFO  - 2019-12-02 20:34:19,401 - Train-method executed
+INFO  - 2019-12-02 20:34:19,401 - full_forward executed
+INFO  - 2019-12-02 20:35:04,286 - ------------------------------------------------
+INFO  - 2019-12-02 20:35:04,286 - Start of the program
+INFO  - 2019-12-02 20:35:04,286 - ------------------------------------------------
+INFO  - 2019-12-02 20:35:04,287 - init_weights executed
+INFO  - 2019-12-02 20:35:04,287 - __init__ executed
+INFO  - 2019-12-02 20:35:04,287 - Train-method executed
+INFO  - 2019-12-02 20:35:04,287 - full_forward executed
+INFO  - 2019-12-02 20:37:38,635 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:38,635 - Start of the program
+INFO  - 2019-12-02 20:37:38,635 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:38,636 - init_weights executed
+INFO  - 2019-12-02 20:37:38,636 - __init__ executed
+INFO  - 2019-12-02 20:37:38,636 - Train-method executed
+INFO  - 2019-12-02 20:37:38,636 - full_forward executed
+INFO  - 2019-12-02 20:37:46,766 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:46,767 - Start of the program
+INFO  - 2019-12-02 20:37:46,767 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:46,767 - init_weights executed
+INFO  - 2019-12-02 20:37:46,767 - __init__ executed
+INFO  - 2019-12-02 20:37:46,767 - Train-method executed
+INFO  - 2019-12-02 20:37:46,767 - full_forward executed
+INFO  - 2019-12-02 20:37:57,729 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:57,730 - Start of the program
+INFO  - 2019-12-02 20:37:57,730 - ------------------------------------------------
+INFO  - 2019-12-02 20:37:57,730 - init_weights executed
+INFO  - 2019-12-02 20:37:57,730 - __init__ executed
+INFO  - 2019-12-02 20:37:57,730 - Train-method executed
+INFO  - 2019-12-02 20:37:57,730 - full_forward executed
+INFO  - 2019-12-02 20:38:18,249 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:18,249 - Start of the program
+INFO  - 2019-12-02 20:38:18,249 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:18,249 - init_weights executed
+INFO  - 2019-12-02 20:38:18,249 - __init__ executed
+INFO  - 2019-12-02 20:38:18,250 - Train-method executed
+INFO  - 2019-12-02 20:38:18,250 - full_forward executed
+INFO  - 2019-12-02 20:38:28,941 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:28,941 - Start of the program
+INFO  - 2019-12-02 20:38:28,941 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:28,942 - init_weights executed
+INFO  - 2019-12-02 20:38:28,942 - __init__ executed
+INFO  - 2019-12-02 20:38:28,942 - Train-method executed
+INFO  - 2019-12-02 20:38:28,942 - full_forward executed
+INFO  - 2019-12-02 20:38:41,652 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:41,652 - Start of the program
+INFO  - 2019-12-02 20:38:41,652 - ------------------------------------------------
+INFO  - 2019-12-02 20:38:41,652 - init_weights executed
+INFO  - 2019-12-02 20:38:41,652 - __init__ executed
+INFO  - 2019-12-02 20:38:41,652 - Train-method executed
+INFO  - 2019-12-02 20:38:41,652 - full_forward executed
+INFO  - 2019-12-02 20:41:21,843 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:21,844 - Start of the program
+INFO  - 2019-12-02 20:41:21,844 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:31,068 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:31,068 - Start of the program
+INFO  - 2019-12-02 20:41:31,068 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:45,199 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:45,199 - Start of the program
+INFO  - 2019-12-02 20:41:45,199 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:54,084 - ------------------------------------------------
+INFO  - 2019-12-02 20:41:54,084 - Start of the program
+INFO  - 2019-12-02 20:41:54,084 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:10,222 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:10,223 - Start of the program
+INFO  - 2019-12-02 20:42:10,223 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:10,223 - init_weights executed
+INFO  - 2019-12-02 20:42:10,223 - __init__ executed
+INFO  - 2019-12-02 20:42:10,223 - Train-method executed
+INFO  - 2019-12-02 20:42:10,223 - full_forward executed
+INFO  - 2019-12-02 20:42:19,535 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:19,535 - Start of the program
+INFO  - 2019-12-02 20:42:19,535 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:19,536 - init_weights executed
+INFO  - 2019-12-02 20:42:19,536 - __init__ executed
+INFO  - 2019-12-02 20:42:19,536 - Train-method executed
+INFO  - 2019-12-02 20:42:19,536 - full_forward executed
+INFO  - 2019-12-02 20:42:35,368 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:35,368 - Start of the program
+INFO  - 2019-12-02 20:42:35,368 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:52,337 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:52,337 - Start of the program
+INFO  - 2019-12-02 20:42:52,337 - ------------------------------------------------
+INFO  - 2019-12-02 20:42:52,337 - init_weights executed
+INFO  - 2019-12-02 20:42:52,337 - __init__ executed
+INFO  - 2019-12-02 20:42:52,337 - Train-method executed
+INFO  - 2019-12-02 20:42:52,337 - full_forward executed
+INFO  - 2019-12-02 20:44:37,245 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:37,245 - Start of the program
+INFO  - 2019-12-02 20:44:37,245 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:37,246 - init_weights executed
+INFO  - 2019-12-02 20:44:37,246 - __init__ executed
+INFO  - 2019-12-02 20:44:37,246 - Train-method executed
+INFO  - 2019-12-02 20:44:37,246 - full_forward executed
+INFO  - 2019-12-02 20:44:40,676 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:40,676 - Start of the program
+INFO  - 2019-12-02 20:44:40,676 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:40,677 - init_weights executed
+INFO  - 2019-12-02 20:44:40,677 - __init__ executed
+INFO  - 2019-12-02 20:44:40,677 - Train-method executed
+INFO  - 2019-12-02 20:44:40,677 - full_forward executed
+INFO  - 2019-12-02 20:44:45,114 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:45,115 - Start of the program
+INFO  - 2019-12-02 20:44:45,115 - ------------------------------------------------
+INFO  - 2019-12-02 20:44:45,115 - init_weights executed
+INFO  - 2019-12-02 20:44:45,115 - __init__ executed
+INFO  - 2019-12-02 20:44:45,115 - Train-method executed
+INFO  - 2019-12-02 20:44:45,115 - full_forward executed
+INFO  - 2019-12-02 20:45:01,440 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:01,440 - Start of the program
+INFO  - 2019-12-02 20:45:01,440 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:12,495 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:12,496 - Start of the program
+INFO  - 2019-12-02 20:45:12,496 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:12,496 - init_weights executed
+INFO  - 2019-12-02 20:45:12,496 - __init__ executed
+INFO  - 2019-12-02 20:45:12,496 - Train-method executed
+INFO  - 2019-12-02 20:45:12,496 - full_forward executed
+INFO  - 2019-12-02 20:45:16,388 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:16,388 - Start of the program
+INFO  - 2019-12-02 20:45:16,388 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:23,491 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:23,491 - Start of the program
+INFO  - 2019-12-02 20:45:23,491 - ------------------------------------------------
+INFO  - 2019-12-02 20:45:23,491 - init_weights executed
+INFO  - 2019-12-02 20:45:23,491 - __init__ executed
+INFO  - 2019-12-02 20:45:23,491 - Train-method executed
+INFO  - 2019-12-02 20:45:23,491 - full_forward executed
+INFO  - 2019-12-02 20:47:47,390 - ------------------------------------------------
+INFO  - 2019-12-02 20:47:47,390 - Start of the program
+INFO  - 2019-12-02 20:47:47,390 - ------------------------------------------------
+INFO  - 2019-12-02 20:47:47,390 - init_weights executed
+INFO  - 2019-12-02 20:47:47,390 - __init__ executed
+INFO  - 2019-12-02 20:47:47,390 - Train-method executed
+INFO  - 2019-12-02 20:47:47,391 - full_forward executed
+INFO  - 2019-12-02 20:48:10,204 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:10,204 - Start of the program
+INFO  - 2019-12-02 20:48:10,204 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:15,328 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:15,329 - Start of the program
+INFO  - 2019-12-02 20:48:15,329 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:15,329 - init_weights executed
+INFO  - 2019-12-02 20:48:15,329 - __init__ executed
+INFO  - 2019-12-02 20:48:15,329 - Train-method executed
+INFO  - 2019-12-02 20:48:15,329 - full_forward executed
+INFO  - 2019-12-02 20:48:26,840 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:26,840 - Start of the program
+INFO  - 2019-12-02 20:48:26,840 - ------------------------------------------------
+INFO  - 2019-12-02 20:48:26,840 - init_weights executed
+INFO  - 2019-12-02 20:48:26,840 - __init__ executed
+INFO  - 2019-12-02 20:48:26,840 - Train-method executed
+INFO  - 2019-12-02 20:48:26,840 - full_forward executed
+INFO  - 2019-12-02 20:49:29,442 - ------------------------------------------------
+INFO  - 2019-12-02 20:49:29,442 - Start of the program
+INFO  - 2019-12-02 20:49:29,442 - ------------------------------------------------
+INFO  - 2019-12-02 20:49:29,442 - init_weights executed
+INFO  - 2019-12-02 20:49:29,442 - __init__ executed
+INFO  - 2019-12-02 20:49:29,442 - Train-method executed
+INFO  - 2019-12-02 20:49:29,442 - full_forward executed
+INFO  - 2019-12-02 20:49:39,664 - ------------------------------------------------
+INFO  - 2019-12-02 20:49:39,664 - Start of the program
+INFO  - 2019-12-02 20:49:39,664 - ------------------------------------------------
+INFO  - 2019-12-02 20:49:39,665 - init_weights executed
+INFO  - 2019-12-02 20:49:39,665 - __init__ executed
+INFO  - 2019-12-02 20:49:39,665 - Train-method executed
+INFO  - 2019-12-02 20:49:39,665 - full_forward executed
+INFO  - 2019-12-02 20:50:13,767 - ------------------------------------------------
+INFO  - 2019-12-02 20:50:13,768 - Start of the program
+INFO  - 2019-12-02 20:50:13,768 - ------------------------------------------------
+INFO  - 2019-12-02 20:50:13,768 - init_weights executed
+INFO  - 2019-12-02 20:50:13,768 - __init__ executed
+INFO  - 2019-12-02 20:50:13,768 - Train-method executed
+INFO  - 2019-12-02 20:50:13,769 - full_forward executed
+INFO  - 2019-12-02 20:50:58,415 - ------------------------------------------------
+INFO  - 2019-12-02 20:50:58,415 - Start of the program
+INFO  - 2019-12-02 20:50:58,415 - ------------------------------------------------
+INFO  - 2019-12-02 20:50:58,415 - init_weights executed
+INFO  - 2019-12-02 20:50:58,415 - __init__ executed
+INFO  - 2019-12-02 20:50:58,416 - Train-method executed
+INFO  - 2019-12-02 20:56:32,838 - ------------------------------------------------
+INFO  - 2019-12-02 20:56:32,838 - Start of the program
+INFO  - 2019-12-02 20:56:32,838 - ------------------------------------------------
+INFO  - 2019-12-02 20:56:32,838 - init_weights executed
+INFO  - 2019-12-02 20:56:32,838 - __init__ executed
+INFO  - 2019-12-02 20:56:32,838 - Train-method executed
+INFO  - 2019-12-02 20:56:32,838 - full_forward executed
+INFO  - 2019-12-02 20:57:25,136 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:25,136 - Start of the program
+INFO  - 2019-12-02 20:57:25,136 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:25,137 - init_weights executed
+INFO  - 2019-12-02 20:57:25,137 - __init__ executed
+INFO  - 2019-12-02 20:57:25,137 - Train-method executed
+INFO  - 2019-12-02 20:57:25,137 - full_forward executed
+INFO  - 2019-12-02 20:57:33,085 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:33,085 - Start of the program
+INFO  - 2019-12-02 20:57:33,085 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:33,085 - init_weights executed
+INFO  - 2019-12-02 20:57:33,085 - __init__ executed
+INFO  - 2019-12-02 20:57:33,085 - Train-method executed
+INFO  - 2019-12-02 20:57:33,085 - full_forward executed
+INFO  - 2019-12-02 20:57:59,378 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:59,378 - Start of the program
+INFO  - 2019-12-02 20:57:59,378 - ------------------------------------------------
+INFO  - 2019-12-02 20:57:59,378 - init_weights executed
+INFO  - 2019-12-02 20:57:59,379 - __init__ executed
+INFO  - 2019-12-02 20:57:59,379 - Train-method executed
+INFO  - 2019-12-02 20:57:59,379 - full_forward executed
+INFO  - 2019-12-02 20:59:35,705 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:35,705 - Start of the program
+INFO  - 2019-12-02 20:59:35,705 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:35,705 - init_weights executed
+INFO  - 2019-12-02 20:59:35,705 - __init__ executed
+INFO  - 2019-12-02 20:59:35,705 - Train-method executed
+INFO  - 2019-12-02 20:59:35,706 - full_forward executed
+INFO  - 2019-12-02 20:59:48,987 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:48,987 - Start of the program
+INFO  - 2019-12-02 20:59:48,987 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:48,987 - init_weights executed
+INFO  - 2019-12-02 20:59:48,987 - __init__ executed
+INFO  - 2019-12-02 20:59:48,987 - Train-method executed
+INFO  - 2019-12-02 20:59:48,987 - full_forward executed
+INFO  - 2019-12-02 20:59:59,646 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:59,646 - Start of the program
+INFO  - 2019-12-02 20:59:59,646 - ------------------------------------------------
+INFO  - 2019-12-02 20:59:59,647 - init_weights executed
+INFO  - 2019-12-02 20:59:59,647 - __init__ executed
+INFO  - 2019-12-02 20:59:59,647 - Train-method executed
+INFO  - 2019-12-02 20:59:59,647 - full_forward executed
+INFO  - 2019-12-02 21:00:04,306 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:04,306 - Start of the program
+INFO  - 2019-12-02 21:00:04,306 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:04,306 - init_weights executed
+INFO  - 2019-12-02 21:00:04,306 - __init__ executed
+INFO  - 2019-12-02 21:00:04,307 - Train-method executed
+INFO  - 2019-12-02 21:00:04,307 - full_forward executed
+INFO  - 2019-12-02 21:00:21,261 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:21,261 - Start of the program
+INFO  - 2019-12-02 21:00:21,261 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:21,261 - init_weights executed
+INFO  - 2019-12-02 21:00:21,261 - __init__ executed
+INFO  - 2019-12-02 21:00:21,261 - Train-method executed
+INFO  - 2019-12-02 21:00:21,262 - full_forward executed
+INFO  - 2019-12-02 21:00:28,335 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:28,335 - Start of the program
+INFO  - 2019-12-02 21:00:28,335 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:28,336 - init_weights executed
+INFO  - 2019-12-02 21:00:28,336 - __init__ executed
+INFO  - 2019-12-02 21:00:28,336 - Train-method executed
+INFO  - 2019-12-02 21:00:28,336 - full_forward executed
+INFO  - 2019-12-02 21:00:38,957 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:38,958 - Start of the program
+INFO  - 2019-12-02 21:00:38,958 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:38,958 - init_weights executed
+INFO  - 2019-12-02 21:00:38,958 - __init__ executed
+INFO  - 2019-12-02 21:00:38,959 - Train-method executed
+INFO  - 2019-12-02 21:00:53,093 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:53,093 - Start of the program
+INFO  - 2019-12-02 21:00:53,093 - ------------------------------------------------
+INFO  - 2019-12-02 21:00:53,093 - init_weights executed
+INFO  - 2019-12-02 21:00:53,094 - __init__ executed
+INFO  - 2019-12-02 21:00:53,094 - Train-method executed
+INFO  - 2019-12-02 21:01:11,537 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:11,537 - Start of the program
+INFO  - 2019-12-02 21:01:11,538 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:11,538 - init_weights executed
+INFO  - 2019-12-02 21:01:11,538 - __init__ executed
+INFO  - 2019-12-02 21:01:11,538 - Train-method executed
+INFO  - 2019-12-02 21:01:36,355 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:36,356 - Start of the program
+INFO  - 2019-12-02 21:01:36,356 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:36,356 - init_weights executed
+INFO  - 2019-12-02 21:01:36,356 - __init__ executed
+INFO  - 2019-12-02 21:01:36,356 - Train-method executed
+INFO  - 2019-12-02 21:01:36,357 - full_forward executed
+INFO  - 2019-12-02 21:01:44,800 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:44,801 - Start of the program
+INFO  - 2019-12-02 21:01:44,801 - ------------------------------------------------
+INFO  - 2019-12-02 21:01:44,801 - init_weights executed
+INFO  - 2019-12-02 21:01:44,801 - __init__ executed
+INFO  - 2019-12-02 21:01:44,802 - Train-method executed
+INFO  - 2019-12-02 21:02:50,367 - ------------------------------------------------
+INFO  - 2019-12-02 21:02:50,367 - Start of the program
+INFO  - 2019-12-02 21:02:50,368 - ------------------------------------------------
+INFO  - 2019-12-02 21:02:50,368 - init_weights executed
+INFO  - 2019-12-02 21:02:50,368 - __init__ executed
+INFO  - 2019-12-02 21:02:50,368 - Train-method executed
+INFO  - 2019-12-02 21:02:50,368 - full_forward executed
+INFO  - 2019-12-02 21:02:55,531 - ------------------------------------------------
+INFO  - 2019-12-02 21:02:55,531 - Start of the program
+INFO  - 2019-12-02 21:02:55,531 - ------------------------------------------------
+INFO  - 2019-12-02 21:02:55,531 - init_weights executed
+INFO  - 2019-12-02 21:02:55,532 - __init__ executed
+INFO  - 2019-12-02 21:02:55,532 - Train-method executed
+INFO  - 2019-12-02 21:04:45,399 - ------------------------------------------------
+INFO  - 2019-12-02 21:04:45,400 - Start of the program
+INFO  - 2019-12-02 21:04:45,400 - ------------------------------------------------
+INFO  - 2019-12-02 21:04:45,400 - init_weights executed
+INFO  - 2019-12-02 21:04:45,400 - __init__ executed
+INFO  - 2019-12-02 21:04:45,401 - Train-method executed
+INFO  - 2019-12-02 21:04:56,313 - ------------------------------------------------
+INFO  - 2019-12-02 21:04:56,314 - Start of the program
+INFO  - 2019-12-02 21:04:56,314 - ------------------------------------------------
+INFO  - 2019-12-02 21:04:56,314 - init_weights executed
+INFO  - 2019-12-02 21:04:56,314 - __init__ executed
+INFO  - 2019-12-02 21:04:56,314 - Train-method executed
+INFO  - 2019-12-02 21:04:56,314 - full_forward executed
+INFO  - 2019-12-02 21:05:03,527 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:03,528 - Start of the program
+INFO  - 2019-12-02 21:05:03,528 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:03,528 - init_weights executed
+INFO  - 2019-12-02 21:05:03,528 - __init__ executed
+INFO  - 2019-12-02 21:05:03,529 - Train-method executed
+INFO  - 2019-12-02 21:05:17,322 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:17,322 - Start of the program
+INFO  - 2019-12-02 21:05:17,323 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:17,323 - init_weights executed
+INFO  - 2019-12-02 21:05:17,323 - __init__ executed
+INFO  - 2019-12-02 21:05:17,323 - Train-method executed
+INFO  - 2019-12-02 21:05:24,748 - full_forward executed
+INFO  - 2019-12-02 21:05:30,840 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:30,841 - Start of the program
+INFO  - 2019-12-02 21:05:30,841 - ------------------------------------------------
+INFO  - 2019-12-02 21:05:30,841 - init_weights executed
+INFO  - 2019-12-02 21:05:30,841 - __init__ executed
+INFO  - 2019-12-02 21:05:30,842 - Train-method executed
+INFO  - 2019-12-02 21:05:35,883 - full_forward executed
+INFO  - 2019-12-02 21:07:53,664 - ------------------------------------------------
+INFO  - 2019-12-02 21:07:53,664 - Start of the program
+INFO  - 2019-12-02 21:07:53,664 - ------------------------------------------------
+INFO  - 2019-12-02 21:07:53,665 - init_weights executed
+INFO  - 2019-12-02 21:07:53,665 - __init__ executed
+INFO  - 2019-12-02 21:07:53,665 - Train-method executed
+INFO  - 2019-12-02 21:08:13,601 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:13,601 - Start of the program
+INFO  - 2019-12-02 21:08:13,601 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:13,601 - init_weights executed
+INFO  - 2019-12-02 21:08:13,601 - __init__ executed
+INFO  - 2019-12-02 21:08:13,601 - Train-method executed
+INFO  - 2019-12-02 21:08:13,601 - full_forward executed
+INFO  - 2019-12-02 21:08:36,726 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:36,727 - Start of the program
+INFO  - 2019-12-02 21:08:36,727 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:36,727 - init_weights executed
+INFO  - 2019-12-02 21:08:36,727 - __init__ executed
+INFO  - 2019-12-02 21:08:36,727 - Train-method executed
+INFO  - 2019-12-02 21:08:36,727 - full_forward executed
+INFO  - 2019-12-02 21:08:43,484 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:43,484 - Start of the program
+INFO  - 2019-12-02 21:08:43,484 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:43,484 - init_weights executed
+INFO  - 2019-12-02 21:08:43,484 - __init__ executed
+INFO  - 2019-12-02 21:08:43,484 - Train-method executed
+INFO  - 2019-12-02 21:08:43,484 - full_forward executed
+INFO  - 2019-12-02 21:08:48,631 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:48,631 - Start of the program
+INFO  - 2019-12-02 21:08:48,631 - ------------------------------------------------
+INFO  - 2019-12-02 21:08:48,631 - init_weights executed
+INFO  - 2019-12-02 21:08:48,631 - __init__ executed
+INFO  - 2019-12-02 21:08:48,631 - Train-method executed
+INFO  - 2019-12-02 21:08:48,631 - full_forward executed
+INFO  - 2019-12-02 21:09:30,547 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:30,547 - Start of the program
+INFO  - 2019-12-02 21:09:30,547 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:30,547 - init_weights executed
+INFO  - 2019-12-02 21:09:30,548 - __init__ executed
+INFO  - 2019-12-02 21:09:30,548 - Train-method executed
+INFO  - 2019-12-02 21:09:30,548 - full_forward executed
+INFO  - 2019-12-02 21:09:36,270 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:36,270 - Start of the program
+INFO  - 2019-12-02 21:09:36,270 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:36,271 - init_weights executed
+INFO  - 2019-12-02 21:09:36,271 - __init__ executed
+INFO  - 2019-12-02 21:09:36,271 - Train-method executed
+INFO  - 2019-12-02 21:09:36,271 - full_forward executed
+INFO  - 2019-12-02 21:09:45,632 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:45,633 - Start of the program
+INFO  - 2019-12-02 21:09:45,633 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:45,633 - init_weights executed
+INFO  - 2019-12-02 21:09:45,633 - __init__ executed
+INFO  - 2019-12-02 21:09:45,633 - Train-method executed
+INFO  - 2019-12-02 21:09:45,633 - full_forward executed
+INFO  - 2019-12-02 21:09:50,331 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:50,331 - Start of the program
+INFO  - 2019-12-02 21:09:50,331 - ------------------------------------------------
+INFO  - 2019-12-02 21:09:50,331 - init_weights executed
+INFO  - 2019-12-02 21:09:50,331 - __init__ executed
+INFO  - 2019-12-02 21:09:50,331 - Train-method executed
+INFO  - 2019-12-02 21:09:50,331 - full_forward executed
+INFO  - 2019-12-02 21:10:11,998 - ------------------------------------------------
+INFO  - 2019-12-02 21:10:11,998 - Start of the program
+INFO  - 2019-12-02 21:10:11,998 - ------------------------------------------------
+INFO  - 2019-12-02 21:10:11,998 - init_weights executed
+INFO  - 2019-12-02 21:10:11,999 - __init__ executed
+INFO  - 2019-12-02 21:10:11,999 - Train-method executed
+INFO  - 2019-12-02 21:10:32,190 - full_forward executed
+INFO  - 2019-12-02 21:10:39,912 - ------------------------------------------------
+INFO  - 2019-12-02 21:10:39,913 - Start of the program
+INFO  - 2019-12-02 21:10:39,913 - ------------------------------------------------
+INFO  - 2019-12-02 21:10:39,913 - init_weights executed
+INFO  - 2019-12-02 21:10:39,913 - __init__ executed
+INFO  - 2019-12-02 21:10:39,914 - Train-method executed
+INFO  - 2019-12-02 21:10:54,994 - full_forward executed
+INFO  - 2019-12-02 21:11:56,120 - ------------------------------------------------
+INFO  - 2019-12-02 21:11:56,120 - Start of the program
+INFO  - 2019-12-02 21:11:56,120 - ------------------------------------------------
+INFO  - 2019-12-02 21:11:56,121 - init_weights executed
+INFO  - 2019-12-02 21:11:56,121 - __init__ executed
+INFO  - 2019-12-02 21:11:56,121 - Train-method executed
+INFO  - 2019-12-02 21:11:59,914 - full_forward executed
+INFO  - 2019-12-02 21:12:57,356 - ------------------------------------------------
+INFO  - 2019-12-02 21:12:57,356 - Start of the program
+INFO  - 2019-12-02 21:12:57,356 - ------------------------------------------------
+INFO  - 2019-12-02 21:12:57,356 - init_weights executed
+INFO  - 2019-12-02 21:12:57,356 - __init__ executed
+INFO  - 2019-12-02 21:12:57,357 - Train-method executed
+INFO  - 2019-12-02 21:12:57,357 - full_forward executed
+INFO  - 2019-12-02 21:13:01,544 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:01,544 - Start of the program
+INFO  - 2019-12-02 21:13:01,544 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:01,545 - init_weights executed
+INFO  - 2019-12-02 21:13:01,545 - __init__ executed
+INFO  - 2019-12-02 21:13:01,545 - Train-method executed
+INFO  - 2019-12-02 21:13:01,545 - full_forward executed
+INFO  - 2019-12-02 21:13:25,158 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:25,158 - Start of the program
+INFO  - 2019-12-02 21:13:25,158 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:25,158 - init_weights executed
+INFO  - 2019-12-02 21:13:25,158 - __init__ executed
+INFO  - 2019-12-02 21:13:25,158 - Train-method executed
+INFO  - 2019-12-02 21:13:25,158 - full_forward executed
+INFO  - 2019-12-02 21:13:25,159 - Backprop executed
+INFO  - 2019-12-02 21:13:25,160 - full_forward executed
+INFO  - 2019-12-02 21:13:25,160 - Backprop executed
+INFO  - 2019-12-02 21:13:25,160 - full_forward executed
+INFO  - 2019-12-02 21:13:25,160 - Backprop executed
+INFO  - 2019-12-02 21:13:25,161 - full_forward executed
+INFO  - 2019-12-02 21:13:25,161 - Backprop executed
+INFO  - 2019-12-02 21:13:25,162 - full_forward executed
+INFO  - 2019-12-02 21:13:25,162 - Backprop executed
+INFO  - 2019-12-02 21:13:25,163 - full_forward executed
+INFO  - 2019-12-02 21:13:25,163 - Backprop executed
+INFO  - 2019-12-02 21:13:25,164 - full_forward executed
+INFO  - 2019-12-02 21:13:25,164 - Backprop executed
+INFO  - 2019-12-02 21:13:25,165 - full_forward executed
+INFO  - 2019-12-02 21:13:25,165 - Backprop executed
+INFO  - 2019-12-02 21:13:25,166 - full_forward executed
+INFO  - 2019-12-02 21:13:25,166 - Backprop executed
+INFO  - 2019-12-02 21:13:25,167 - full_forward executed
+INFO  - 2019-12-02 21:13:25,167 - Backprop executed
+INFO  - 2019-12-02 21:13:25,168 - full_forward executed
+INFO  - 2019-12-02 21:13:25,168 - Backprop executed
+INFO  - 2019-12-02 21:13:25,169 - full_forward executed
+INFO  - 2019-12-02 21:13:25,169 - Backprop executed
+INFO  - 2019-12-02 21:13:25,170 - full_forward executed
+INFO  - 2019-12-02 21:13:25,170 - Backprop executed
+INFO  - 2019-12-02 21:13:25,171 - full_forward executed
+INFO  - 2019-12-02 21:13:25,171 - Backprop executed
+INFO  - 2019-12-02 21:13:25,171 - full_forward executed
+INFO  - 2019-12-02 21:13:25,172 - Backprop executed
+INFO  - 2019-12-02 21:13:25,172 - full_forward executed
+INFO  - 2019-12-02 21:13:25,172 - Backprop executed
+INFO  - 2019-12-02 21:13:25,173 - full_forward executed
+INFO  - 2019-12-02 21:13:25,173 - Backprop executed
+INFO  - 2019-12-02 21:13:25,174 - full_forward executed
+INFO  - 2019-12-02 21:13:25,174 - Backprop executed
+INFO  - 2019-12-02 21:13:25,175 - full_forward executed
+INFO  - 2019-12-02 21:13:25,175 - Backprop executed
+INFO  - 2019-12-02 21:13:25,175 - full_forward executed
+INFO  - 2019-12-02 21:13:25,176 - Backprop executed
+INFO  - 2019-12-02 21:13:39,395 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:39,395 - Start of the program
+INFO  - 2019-12-02 21:13:39,396 - ------------------------------------------------
+INFO  - 2019-12-02 21:13:39,396 - init_weights executed
+INFO  - 2019-12-02 21:13:39,396 - __init__ executed
+INFO  - 2019-12-02 21:13:39,396 - Train-method executed
+INFO  - 2019-12-02 21:13:39,396 - full_forward executed
+INFO  - 2019-12-02 21:13:39,396 - Backprop executed
+INFO  - 2019-12-02 21:13:39,397 - full_forward executed
+INFO  - 2019-12-02 21:13:39,397 - Backprop executed
+INFO  - 2019-12-02 21:13:39,398 - full_forward executed
+INFO  - 2019-12-02 21:13:39,398 - Backprop executed
+INFO  - 2019-12-02 21:13:39,399 - full_forward executed
+INFO  - 2019-12-02 21:13:39,399 - Backprop executed
+INFO  - 2019-12-02 21:13:39,400 - full_forward executed
+INFO  - 2019-12-02 21:13:39,400 - Backprop executed
+INFO  - 2019-12-02 21:13:39,401 - full_forward executed
+INFO  - 2019-12-02 21:13:39,401 - Backprop executed
+INFO  - 2019-12-02 21:13:39,402 - full_forward executed
+INFO  - 2019-12-02 21:13:39,402 - Backprop executed
+INFO  - 2019-12-02 21:13:39,402 - full_forward executed
+INFO  - 2019-12-02 21:13:39,403 - Backprop executed
+INFO  - 2019-12-02 21:13:39,403 - full_forward executed
+INFO  - 2019-12-02 21:13:39,403 - Backprop executed
+INFO  - 2019-12-02 21:13:39,404 - full_forward executed
+INFO  - 2019-12-02 21:13:39,404 - Backprop executed
+INFO  - 2019-12-02 21:13:39,405 - full_forward executed
+INFO  - 2019-12-02 21:13:39,405 - Backprop executed
+INFO  - 2019-12-02 21:13:39,406 - full_forward executed
+INFO  - 2019-12-02 21:13:39,406 - Backprop executed
+INFO  - 2019-12-02 21:13:39,407 - full_forward executed
+INFO  - 2019-12-02 21:13:39,407 - Backprop executed
+INFO  - 2019-12-02 21:13:39,407 - full_forward executed
+INFO  - 2019-12-02 21:13:39,407 - Backprop executed
+INFO  - 2019-12-02 21:13:39,408 - full_forward executed
+INFO  - 2019-12-02 21:13:39,408 - Backprop executed
+INFO  - 2019-12-02 21:13:39,409 - full_forward executed
+INFO  - 2019-12-02 21:13:39,409 - Backprop executed
+INFO  - 2019-12-02 21:13:39,410 - full_forward executed
+INFO  - 2019-12-02 21:13:39,410 - Backprop executed
+INFO  - 2019-12-02 21:13:39,411 - full_forward executed
+INFO  - 2019-12-02 21:13:39,411 - Backprop executed
+INFO  - 2019-12-02 21:13:39,411 - full_forward executed
+INFO  - 2019-12-02 21:13:39,411 - Backprop executed
+INFO  - 2019-12-02 21:13:39,412 - full_forward executed
+INFO  - 2019-12-02 21:13:39,412 - Backprop executed
+INFO  - 2019-12-02 21:13:39,413 - full_forward executed
+INFO  - 2019-12-02 21:13:39,413 - Backprop executed
+INFO  - 2019-12-02 21:13:39,414 - full_forward executed
+INFO  - 2019-12-02 21:13:39,414 - Backprop executed
+INFO  - 2019-12-02 21:13:39,415 - full_forward executed
+INFO  - 2019-12-02 21:13:39,415 - Backprop executed
+INFO  - 2019-12-02 21:13:39,415 - full_forward executed
+INFO  - 2019-12-02 21:13:39,415 - Backprop executed
+INFO  - 2019-12-02 21:13:39,416 - full_forward executed
+INFO  - 2019-12-02 21:13:39,416 - Backprop executed
+INFO  - 2019-12-02 21:13:39,417 - full_forward executed
+INFO  - 2019-12-02 21:13:39,417 - Backprop executed
+INFO  - 2019-12-02 21:13:39,418 - full_forward executed
+INFO  - 2019-12-02 21:13:39,418 - Backprop executed
+INFO  - 2019-12-02 21:13:39,419 - full_forward executed
+INFO  - 2019-12-02 21:13:39,419 - Backprop executed
+INFO  - 2019-12-02 21:13:39,420 - full_forward executed
+INFO  - 2019-12-02 21:13:39,420 - Backprop executed
+INFO  - 2019-12-02 21:13:39,421 - full_forward executed
+INFO  - 2019-12-02 21:13:39,421 - Backprop executed
+INFO  - 2019-12-02 21:13:39,421 - full_forward executed
+INFO  - 2019-12-02 21:13:39,421 - Backprop executed
+INFO  - 2019-12-02 21:13:39,422 - full_forward executed
+INFO  - 2019-12-02 21:13:39,422 - Backprop executed
+INFO  - 2019-12-02 21:13:39,423 - full_forward executed
+INFO  - 2019-12-02 21:13:39,423 - Backprop executed
+INFO  - 2019-12-02 21:13:39,424 - full_forward executed
+INFO  - 2019-12-02 21:13:39,424 - Backprop executed
+INFO  - 2019-12-02 21:13:39,425 - full_forward executed
+INFO  - 2019-12-02 21:13:39,425 - Backprop executed
+INFO  - 2019-12-02 21:13:39,426 - full_forward executed
+INFO  - 2019-12-02 21:13:39,426 - Backprop executed
+INFO  - 2019-12-02 21:13:39,427 - full_forward executed
+INFO  - 2019-12-02 21:13:39,427 - Backprop executed
+INFO  - 2019-12-02 21:13:39,427 - full_forward executed
+INFO  - 2019-12-02 21:13:39,428 - Backprop executed
+INFO  - 2019-12-02 21:13:39,428 - full_forward executed
+INFO  - 2019-12-02 21:13:39,428 - Backprop executed
+INFO  - 2019-12-02 21:13:39,429 - full_forward executed
+INFO  - 2019-12-02 21:13:39,430 - Backprop executed
+INFO  - 2019-12-02 21:13:39,430 - full_forward executed
+INFO  - 2019-12-02 21:13:39,431 - Backprop executed
+INFO  - 2019-12-02 21:13:39,431 - full_forward executed
+INFO  - 2019-12-02 21:13:39,431 - Backprop executed
+INFO  - 2019-12-02 21:13:39,432 - full_forward executed
+INFO  - 2019-12-02 21:13:39,432 - Backprop executed
+INFO  - 2019-12-02 21:13:39,433 - full_forward executed
+INFO  - 2019-12-02 21:13:39,433 - Backprop executed
+INFO  - 2019-12-02 21:13:39,434 - full_forward executed
+INFO  - 2019-12-02 21:13:39,434 - Backprop executed
+INFO  - 2019-12-02 21:13:39,435 - full_forward executed
+INFO  - 2019-12-02 21:13:39,435 - Backprop executed
+INFO  - 2019-12-02 21:13:39,436 - full_forward executed
+INFO  - 2019-12-02 21:13:39,436 - Backprop executed
+INFO  - 2019-12-02 21:13:39,437 - full_forward executed
+INFO  - 2019-12-02 21:13:39,437 - Backprop executed
+INFO  - 2019-12-02 21:13:39,438 - full_forward executed
+INFO  - 2019-12-02 21:13:39,438 - Backprop executed
+INFO  - 2019-12-02 21:13:39,439 - full_forward executed
+INFO  - 2019-12-02 21:13:39,439 - Backprop executed
+INFO  - 2019-12-02 21:13:39,439 - full_forward executed
+INFO  - 2019-12-02 21:13:39,440 - Backprop executed
+INFO  - 2019-12-02 21:13:39,440 - full_forward executed
+INFO  - 2019-12-02 21:13:39,441 - Backprop executed
+INFO  - 2019-12-02 21:13:39,441 - full_forward executed
+INFO  - 2019-12-02 21:13:39,442 - Backprop executed
+INFO  - 2019-12-02 21:13:39,442 - full_forward executed
+INFO  - 2019-12-02 21:13:39,442 - Backprop executed
+INFO  - 2019-12-02 21:13:39,443 - full_forward executed
+INFO  - 2019-12-02 21:13:39,443 - Backprop executed
+INFO  - 2019-12-02 21:13:39,444 - full_forward executed
+INFO  - 2019-12-02 21:13:39,444 - Backprop executed
+INFO  - 2019-12-02 21:13:39,445 - full_forward executed
+INFO  - 2019-12-02 21:13:39,445 - Backprop executed
+INFO  - 2019-12-02 21:13:39,446 - full_forward executed
+INFO  - 2019-12-02 21:13:39,446 - Backprop executed
+INFO  - 2019-12-02 21:13:39,447 - full_forward executed
+INFO  - 2019-12-02 21:13:39,447 - Backprop executed
+INFO  - 2019-12-02 21:13:39,448 - full_forward executed
+INFO  - 2019-12-02 21:13:39,448 - Backprop executed
+INFO  - 2019-12-02 21:13:39,449 - full_forward executed
+INFO  - 2019-12-02 21:13:39,449 - Backprop executed
+INFO  - 2019-12-02 21:13:39,454 - full_forward executed
+INFO  - 2019-12-02 21:13:39,454 - Backprop executed
+INFO  - 2019-12-02 21:13:39,455 - full_forward executed
+INFO  - 2019-12-02 21:13:39,455 - Backprop executed
+INFO  - 2019-12-02 21:13:39,456 - full_forward executed
+INFO  - 2019-12-02 21:13:39,456 - Backprop executed
+INFO  - 2019-12-02 21:13:39,457 - full_forward executed
+INFO  - 2019-12-02 21:13:39,457 - Backprop executed
+INFO  - 2019-12-02 21:13:39,458 - full_forward executed
+INFO  - 2019-12-02 21:13:39,458 - Backprop executed
+INFO  - 2019-12-02 21:13:39,459 - full_forward executed
+INFO  - 2019-12-02 21:13:39,459 - Backprop executed
+INFO  - 2019-12-02 21:13:39,460 - full_forward executed
+INFO  - 2019-12-02 21:13:39,460 - Backprop executed
+INFO  - 2019-12-02 21:13:39,461 - full_forward executed
+INFO  - 2019-12-02 21:13:39,461 - Backprop executed
+INFO  - 2019-12-02 21:13:39,461 - full_forward executed
+INFO  - 2019-12-02 21:13:39,462 - Backprop executed
+INFO  - 2019-12-02 21:13:39,462 - full_forward executed
+INFO  - 2019-12-02 21:13:39,462 - Backprop executed
+INFO  - 2019-12-02 21:13:39,463 - full_forward executed
+INFO  - 2019-12-02 21:13:39,463 - Backprop executed
+INFO  - 2019-12-02 21:13:39,464 - full_forward executed
+INFO  - 2019-12-02 21:13:39,464 - Backprop executed
+INFO  - 2019-12-02 21:13:39,465 - full_forward executed
+INFO  - 2019-12-02 21:13:39,465 - Backprop executed
+INFO  - 2019-12-02 21:13:39,466 - full_forward executed
+INFO  - 2019-12-02 21:13:39,466 - Backprop executed
+INFO  - 2019-12-02 21:13:39,467 - full_forward executed
+INFO  - 2019-12-02 21:13:39,467 - Backprop executed
+INFO  - 2019-12-02 21:13:39,468 - full_forward executed
+INFO  - 2019-12-02 21:13:39,468 - Backprop executed
+INFO  - 2019-12-02 21:13:39,469 - full_forward executed
+INFO  - 2019-12-02 21:13:39,469 - Backprop executed
+INFO  - 2019-12-02 21:13:39,470 - full_forward executed
+INFO  - 2019-12-02 21:13:39,470 - Backprop executed
+INFO  - 2019-12-02 21:13:39,470 - full_forward executed
+INFO  - 2019-12-02 21:13:39,471 - Backprop executed
+INFO  - 2019-12-02 21:16:02,861 - ------------------------------------------------
+INFO  - 2019-12-02 21:16:02,861 - Start of the program
+INFO  - 2019-12-02 21:16:02,861 - ------------------------------------------------
+INFO  - 2019-12-02 21:16:02,862 - init_weights executed
+INFO  - 2019-12-02 21:16:02,862 - __init__ executed
+INFO  - 2019-12-02 21:16:02,862 - Train-method executed
+INFO  - 2019-12-02 21:16:02,862 - full_forward executed
+INFO  - 2019-12-02 21:16:02,862 - Backprop executed
+INFO  - 2019-12-02 21:16:02,863 - full_forward executed
+INFO  - 2019-12-02 21:16:02,863 - Backprop executed
+INFO  - 2019-12-02 21:16:02,864 - full_forward executed
+INFO  - 2019-12-02 21:16:02,864 - Backprop executed
+INFO  - 2019-12-02 21:16:02,864 - full_forward executed
+INFO  - 2019-12-02 21:16:02,864 - Backprop executed
+INFO  - 2019-12-02 21:16:02,865 - full_forward executed
+INFO  - 2019-12-02 21:16:02,865 - Backprop executed
+INFO  - 2019-12-02 21:16:02,866 - full_forward executed
+INFO  - 2019-12-02 21:16:02,866 - Backprop executed
+INFO  - 2019-12-02 21:16:02,867 - full_forward executed
+INFO  - 2019-12-02 21:16:02,867 - Backprop executed
+INFO  - 2019-12-02 21:16:02,867 - full_forward executed
+INFO  - 2019-12-02 21:16:02,868 - Backprop executed
+INFO  - 2019-12-02 21:16:02,868 - full_forward executed
+INFO  - 2019-12-02 21:16:02,868 - Backprop executed
+INFO  - 2019-12-02 21:16:02,869 - full_forward executed
+INFO  - 2019-12-02 21:16:02,869 - Backprop executed
+INFO  - 2019-12-02 21:16:02,870 - full_forward executed
+INFO  - 2019-12-02 21:16:02,870 - Backprop executed
+INFO  - 2019-12-02 21:16:02,870 - full_forward executed
+INFO  - 2019-12-02 21:16:02,871 - Backprop executed
+INFO  - 2019-12-02 21:16:02,871 - full_forward executed
+INFO  - 2019-12-02 21:16:02,871 - Backprop executed
+INFO  - 2019-12-02 21:16:02,872 - full_forward executed
+INFO  - 2019-12-02 21:16:02,872 - Backprop executed
+INFO  - 2019-12-02 21:16:02,873 - full_forward executed
+INFO  - 2019-12-02 21:16:02,873 - Backprop executed
+INFO  - 2019-12-02 21:16:02,874 - full_forward executed
+INFO  - 2019-12-02 21:16:02,874 - Backprop executed
+INFO  - 2019-12-02 21:16:02,874 - full_forward executed
+INFO  - 2019-12-02 21:16:02,875 - Backprop executed
+INFO  - 2019-12-02 21:16:02,875 - full_forward executed
+INFO  - 2019-12-02 21:16:02,875 - Backprop executed
+INFO  - 2019-12-02 21:16:02,876 - full_forward executed
+INFO  - 2019-12-02 21:16:02,876 - Backprop executed
+INFO  - 2019-12-02 21:16:02,877 - full_forward executed
+INFO  - 2019-12-02 21:16:02,877 - Backprop executed
+INFO  - 2019-12-02 21:16:02,878 - full_forward executed
+INFO  - 2019-12-02 21:16:02,878 - Backprop executed
+INFO  - 2019-12-02 21:16:02,878 - full_forward executed
+INFO  - 2019-12-02 21:16:02,878 - Backprop executed
+INFO  - 2019-12-02 21:16:02,879 - full_forward executed
+INFO  - 2019-12-02 21:16:02,879 - Backprop executed
+INFO  - 2019-12-02 21:16:02,880 - full_forward executed
+INFO  - 2019-12-02 21:16:02,880 - Backprop executed
+INFO  - 2019-12-02 21:16:02,881 - full_forward executed
+INFO  - 2019-12-02 21:16:02,881 - Backprop executed
+INFO  - 2019-12-02 21:16:02,881 - full_forward executed
+INFO  - 2019-12-02 21:16:02,881 - Backprop executed
+INFO  - 2019-12-02 21:16:02,882 - full_forward executed
+INFO  - 2019-12-02 21:16:02,882 - Backprop executed
+INFO  - 2019-12-02 21:16:02,883 - full_forward executed
+INFO  - 2019-12-02 21:16:02,883 - Backprop executed
+INFO  - 2019-12-02 21:16:02,884 - full_forward executed
+INFO  - 2019-12-02 21:16:02,884 - Backprop executed
+INFO  - 2019-12-02 21:16:02,884 - full_forward executed
+INFO  - 2019-12-02 21:16:02,885 - Backprop executed
+INFO  - 2019-12-02 21:16:02,885 - full_forward executed
+INFO  - 2019-12-02 21:16:02,885 - Backprop executed
+INFO  - 2019-12-02 21:16:02,886 - full_forward executed
+INFO  - 2019-12-02 21:16:02,886 - Backprop executed
+INFO  - 2019-12-02 21:16:02,887 - full_forward executed
+INFO  - 2019-12-02 21:16:02,887 - Backprop executed
+INFO  - 2019-12-02 21:16:02,888 - full_forward executed
+INFO  - 2019-12-02 21:16:02,888 - Backprop executed
+INFO  - 2019-12-02 21:16:02,888 - full_forward executed
+INFO  - 2019-12-02 21:16:02,888 - Backprop executed
+INFO  - 2019-12-02 21:16:02,889 - full_forward executed
+INFO  - 2019-12-02 21:16:02,889 - Backprop executed
+INFO  - 2019-12-02 21:16:02,890 - full_forward executed
+INFO  - 2019-12-02 21:16:02,890 - Backprop executed
+INFO  - 2019-12-02 21:16:02,891 - full_forward executed
+INFO  - 2019-12-02 21:16:02,891 - Backprop executed
+INFO  - 2019-12-02 21:16:02,891 - full_forward executed
+INFO  - 2019-12-02 21:16:02,891 - Backprop executed
+INFO  - 2019-12-02 21:16:02,892 - full_forward executed
+INFO  - 2019-12-02 21:16:02,892 - Backprop executed
+INFO  - 2019-12-02 21:16:02,893 - full_forward executed
+INFO  - 2019-12-02 21:16:02,893 - Backprop executed
+INFO  - 2019-12-02 21:16:02,894 - full_forward executed
+INFO  - 2019-12-02 21:16:02,894 - Backprop executed
+INFO  - 2019-12-02 21:16:02,894 - full_forward executed
+INFO  - 2019-12-02 21:16:02,895 - Backprop executed
+INFO  - 2019-12-02 21:16:02,895 - full_forward executed
+INFO  - 2019-12-02 21:16:02,895 - Backprop executed
+INFO  - 2019-12-02 21:16:02,896 - full_forward executed
+INFO  - 2019-12-02 21:16:02,896 - Backprop executed
+INFO  - 2019-12-02 21:16:02,897 - full_forward executed
+INFO  - 2019-12-02 21:16:02,897 - Backprop executed
+INFO  - 2019-12-02 21:16:02,897 - full_forward executed
+INFO  - 2019-12-02 21:16:02,898 - Backprop executed
+INFO  - 2019-12-02 21:16:02,898 - full_forward executed
+INFO  - 2019-12-02 21:16:02,898 - Backprop executed
+INFO  - 2019-12-02 21:16:02,899 - full_forward executed
+INFO  - 2019-12-02 21:16:02,899 - Backprop executed
+INFO  - 2019-12-02 21:16:02,900 - full_forward executed
+INFO  - 2019-12-02 21:16:02,900 - Backprop executed
+INFO  - 2019-12-02 21:16:02,900 - full_forward executed
+INFO  - 2019-12-02 21:16:02,901 - Backprop executed
+INFO  - 2019-12-02 21:16:02,901 - full_forward executed
+INFO  - 2019-12-02 21:16:02,901 - Backprop executed
+INFO  - 2019-12-02 21:16:02,902 - full_forward executed
+INFO  - 2019-12-02 21:16:02,902 - Backprop executed
+INFO  - 2019-12-02 21:16:02,903 - full_forward executed
+INFO  - 2019-12-02 21:16:02,903 - Backprop executed
+INFO  - 2019-12-02 21:16:02,904 - full_forward executed
+INFO  - 2019-12-02 21:16:02,904 - Backprop executed
+INFO  - 2019-12-02 21:16:02,904 - full_forward executed
+INFO  - 2019-12-02 21:16:02,904 - Backprop executed
+INFO  - 2019-12-02 21:16:02,905 - full_forward executed
+INFO  - 2019-12-02 21:16:02,905 - Backprop executed
+INFO  - 2019-12-02 21:16:02,906 - full_forward executed
+INFO  - 2019-12-02 21:16:02,906 - Backprop executed
+INFO  - 2019-12-02 21:16:02,907 - full_forward executed
+INFO  - 2019-12-02 21:16:02,907 - Backprop executed
+INFO  - 2019-12-02 21:16:02,907 - full_forward executed
+INFO  - 2019-12-02 21:16:02,908 - Backprop executed
+INFO  - 2019-12-02 21:16:02,908 - full_forward executed
+INFO  - 2019-12-02 21:16:02,908 - Backprop executed
+INFO  - 2019-12-02 21:16:02,909 - full_forward executed
+INFO  - 2019-12-02 21:16:02,909 - Backprop executed
+INFO  - 2019-12-02 21:16:02,910 - full_forward executed
+INFO  - 2019-12-02 21:16:02,910 - Backprop executed
+INFO  - 2019-12-02 21:16:02,910 - full_forward executed
+INFO  - 2019-12-02 21:16:02,911 - Backprop executed
+INFO  - 2019-12-02 21:16:02,911 - full_forward executed
+INFO  - 2019-12-02 21:16:02,911 - Backprop executed
+INFO  - 2019-12-02 21:16:02,912 - full_forward executed
+INFO  - 2019-12-02 21:16:02,912 - Backprop executed
+INFO  - 2019-12-02 21:16:02,913 - full_forward executed
+INFO  - 2019-12-02 21:16:02,913 - Backprop executed
+INFO  - 2019-12-02 21:16:02,914 - full_forward executed
+INFO  - 2019-12-02 21:16:02,914 - Backprop executed
+INFO  - 2019-12-02 21:16:02,915 - full_forward executed
+INFO  - 2019-12-02 21:16:02,915 - Backprop executed
+INFO  - 2019-12-02 21:16:02,915 - full_forward executed
+INFO  - 2019-12-02 21:16:02,915 - Backprop executed
+INFO  - 2019-12-02 21:16:02,916 - full_forward executed
+INFO  - 2019-12-02 21:16:02,916 - Backprop executed
+INFO  - 2019-12-02 21:16:02,917 - full_forward executed
+INFO  - 2019-12-02 21:16:02,917 - Backprop executed
+INFO  - 2019-12-02 21:16:02,918 - full_forward executed
+INFO  - 2019-12-02 21:16:02,918 - Backprop executed
+INFO  - 2019-12-02 21:16:02,919 - full_forward executed
+INFO  - 2019-12-02 21:16:02,919 - Backprop executed
+INFO  - 2019-12-02 21:16:02,920 - full_forward executed
+INFO  - 2019-12-02 21:16:02,920 - Backprop executed
+INFO  - 2019-12-02 21:16:02,920 - full_forward executed
+INFO  - 2019-12-02 21:16:02,921 - Backprop executed
+INFO  - 2019-12-02 21:16:02,921 - full_forward executed
+INFO  - 2019-12-02 21:16:02,921 - Backprop executed
+INFO  - 2019-12-02 21:16:02,922 - full_forward executed
+INFO  - 2019-12-02 21:16:02,922 - Backprop executed
+INFO  - 2019-12-02 21:16:02,923 - full_forward executed
+INFO  - 2019-12-02 21:16:02,923 - Backprop executed
+INFO  - 2019-12-02 21:16:02,924 - full_forward executed
+INFO  - 2019-12-02 21:16:02,924 - Backprop executed
+INFO  - 2019-12-02 21:18:49,085 - ------------------------------------------------
+INFO  - 2019-12-02 21:18:49,085 - Start of the program
+INFO  - 2019-12-02 21:18:49,085 - ------------------------------------------------
+INFO  - 2019-12-02 21:18:49,086 - init_weights executed
+INFO  - 2019-12-02 21:18:49,086 - __init__ executed
+INFO  - 2019-12-02 21:18:49,086 - Train-method executed
+INFO  - 2019-12-02 21:18:49,086 - full_forward executed
+INFO  - 2019-12-02 21:21:00,911 - ------------------------------------------------
+INFO  - 2019-12-02 21:21:00,912 - Start of the program
+INFO  - 2019-12-02 21:21:00,912 - ------------------------------------------------
+INFO  - 2019-12-02 21:21:00,912 - init_weights executed
+INFO  - 2019-12-02 21:21:00,912 - __init__ executed
+INFO  - 2019-12-02 21:21:00,912 - Train-method executed
+INFO  - 2019-12-02 21:21:00,912 - full_forward executed
+INFO  - 2019-12-02 21:21:38,081 - ------------------------------------------------
+INFO  - 2019-12-02 21:21:38,081 - Start of the program
+INFO  - 2019-12-02 21:21:38,081 - ------------------------------------------------
+INFO  - 2019-12-02 21:21:38,081 - init_weights executed
+INFO  - 2019-12-02 21:21:38,082 - __init__ executed
+INFO  - 2019-12-02 21:21:38,082 - Train-method executed
+INFO  - 2019-12-02 21:21:38,082 - full_forward executed
+INFO  - 2019-12-02 21:22:28,848 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:28,849 - Start of the program
+INFO  - 2019-12-02 21:22:28,849 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:28,849 - init_weights executed
+INFO  - 2019-12-02 21:22:28,849 - __init__ executed
+INFO  - 2019-12-02 21:22:28,849 - Train-method executed
+INFO  - 2019-12-02 21:22:28,849 - full_forward executed
+INFO  - 2019-12-02 21:22:36,335 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:36,335 - Start of the program
+INFO  - 2019-12-02 21:22:36,335 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:36,336 - init_weights executed
+INFO  - 2019-12-02 21:22:36,336 - __init__ executed
+INFO  - 2019-12-02 21:22:36,336 - Train-method executed
+INFO  - 2019-12-02 21:22:36,336 - full_forward executed
+INFO  - 2019-12-02 21:22:40,996 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:40,997 - Start of the program
+INFO  - 2019-12-02 21:22:40,997 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:40,997 - init_weights executed
+INFO  - 2019-12-02 21:22:40,997 - __init__ executed
+INFO  - 2019-12-02 21:22:40,997 - Train-method executed
+INFO  - 2019-12-02 21:22:40,997 - full_forward executed
+INFO  - 2019-12-02 21:22:53,823 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:53,824 - Start of the program
+INFO  - 2019-12-02 21:22:53,824 - ------------------------------------------------
+INFO  - 2019-12-02 21:22:53,824 - init_weights executed
+INFO  - 2019-12-02 21:22:53,824 - __init__ executed
+INFO  - 2019-12-02 21:22:53,824 - Train-method executed
+INFO  - 2019-12-02 21:22:53,824 - full_forward executed
+INFO  - 2019-12-02 21:23:17,139 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:17,139 - Start of the program
+INFO  - 2019-12-02 21:23:17,139 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:17,139 - init_weights executed
+INFO  - 2019-12-02 21:23:17,139 - __init__ executed
+INFO  - 2019-12-02 21:23:17,139 - Train-method executed
+INFO  - 2019-12-02 21:23:17,140 - full_forward executed
+INFO  - 2019-12-02 21:23:42,681 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:42,681 - Start of the program
+INFO  - 2019-12-02 21:23:42,681 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:42,682 - init_weights executed
+INFO  - 2019-12-02 21:23:42,682 - __init__ executed
+INFO  - 2019-12-02 21:23:42,682 - Train-method executed
+INFO  - 2019-12-02 21:23:42,682 - full_forward executed
+INFO  - 2019-12-02 21:23:49,250 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:49,250 - Start of the program
+INFO  - 2019-12-02 21:23:49,250 - ------------------------------------------------
+INFO  - 2019-12-02 21:23:49,250 - init_weights executed
+INFO  - 2019-12-02 21:23:49,250 - __init__ executed
+INFO  - 2019-12-02 21:23:49,251 - Train-method executed
+INFO  - 2019-12-02 21:23:49,251 - full_forward executed
+INFO  - 2019-12-02 21:24:17,194 - ------------------------------------------------
+INFO  - 2019-12-02 21:24:17,194 - Start of the program
+INFO  - 2019-12-02 21:24:17,195 - ------------------------------------------------
+INFO  - 2019-12-02 21:24:17,195 - init_weights executed
+INFO  - 2019-12-02 21:24:17,195 - __init__ executed
+INFO  - 2019-12-02 21:24:17,195 - Train-method executed
+INFO  - 2019-12-02 21:25:50,588 - ------------------------------------------------
+INFO  - 2019-12-02 21:25:50,588 - Start of the program
+INFO  - 2019-12-02 21:25:50,588 - ------------------------------------------------
+INFO  - 2019-12-02 21:25:50,589 - init_weights executed
+INFO  - 2019-12-02 21:25:50,589 - __init__ executed
+INFO  - 2019-12-02 21:25:50,589 - Train-method executed
+INFO  - 2019-12-02 21:27:16,695 - ------------------------------------------------
+INFO  - 2019-12-02 21:27:16,695 - Start of the program
+INFO  - 2019-12-02 21:27:16,695 - ------------------------------------------------
+INFO  - 2019-12-02 21:27:16,695 - init_weights executed
+INFO  - 2019-12-02 21:27:16,695 - __init__ executed
+INFO  - 2019-12-02 21:27:16,695 - Train-method executed
+INFO  - 2019-12-02 21:27:16,696 - full_forward executed
+INFO  - 2019-12-02 21:27:16,696 - Backprop executed
+INFO  - 2019-12-02 21:27:16,697 - full_forward executed
+INFO  - 2019-12-02 21:27:16,697 - Backprop executed
+INFO  - 2019-12-02 21:27:16,697 - full_forward executed
+INFO  - 2019-12-02 21:27:16,698 - Backprop executed
+INFO  - 2019-12-02 21:27:16,698 - full_forward executed
+INFO  - 2019-12-02 21:27:16,698 - Backprop executed
+INFO  - 2019-12-02 21:27:16,699 - full_forward executed
+INFO  - 2019-12-02 21:27:16,699 - Backprop executed
+INFO  - 2019-12-02 21:27:16,700 - full_forward executed
+INFO  - 2019-12-02 21:27:16,700 - Backprop executed
+INFO  - 2019-12-02 21:27:16,701 - full_forward executed
+INFO  - 2019-12-02 21:27:16,701 - Backprop executed
+INFO  - 2019-12-02 21:27:16,702 - full_forward executed
+INFO  - 2019-12-02 21:27:16,702 - Backprop executed
+INFO  - 2019-12-02 21:27:16,702 - full_forward executed
+INFO  - 2019-12-02 21:27:16,702 - Backprop executed
+INFO  - 2019-12-02 21:27:16,703 - full_forward executed
+INFO  - 2019-12-02 21:27:16,703 - Backprop executed
+INFO  - 2019-12-02 21:27:16,704 - full_forward executed
+INFO  - 2019-12-02 21:27:16,704 - Backprop executed
+INFO  - 2019-12-02 21:27:16,705 - full_forward executed
+INFO  - 2019-12-02 21:27:16,705 - Backprop executed
+INFO  - 2019-12-02 21:27:16,706 - full_forward executed
+INFO  - 2019-12-02 21:27:16,706 - Backprop executed
+INFO  - 2019-12-02 21:27:16,706 - full_forward executed
+INFO  - 2019-12-02 21:27:16,706 - Backprop executed
+INFO  - 2019-12-02 21:27:16,707 - full_forward executed
+INFO  - 2019-12-02 21:27:16,707 - Backprop executed
+INFO  - 2019-12-02 21:27:16,708 - full_forward executed
+INFO  - 2019-12-02 21:27:16,708 - Backprop executed
+INFO  - 2019-12-02 21:27:16,709 - full_forward executed
+INFO  - 2019-12-02 21:27:16,709 - Backprop executed
+INFO  - 2019-12-02 21:27:16,710 - full_forward executed
+INFO  - 2019-12-02 21:27:16,710 - Backprop executed
+INFO  - 2019-12-02 21:27:16,710 - full_forward executed
+INFO  - 2019-12-02 21:27:16,711 - Backprop executed
+INFO  - 2019-12-02 21:27:16,711 - full_forward executed
+INFO  - 2019-12-02 21:27:16,711 - Backprop executed
+INFO  - 2019-12-02 21:27:16,712 - full_forward executed
+INFO  - 2019-12-02 21:27:16,712 - Backprop executed
+INFO  - 2019-12-02 21:27:16,713 - full_forward executed
+INFO  - 2019-12-02 21:27:16,713 - Backprop executed
+INFO  - 2019-12-02 21:27:16,714 - full_forward executed
+INFO  - 2019-12-02 21:27:16,714 - Backprop executed
+INFO  - 2019-12-02 21:27:16,714 - full_forward executed
+INFO  - 2019-12-02 21:27:16,714 - Backprop executed
+INFO  - 2019-12-02 21:27:16,715 - full_forward executed
+INFO  - 2019-12-02 21:27:16,715 - Backprop executed
+INFO  - 2019-12-02 21:27:16,716 - full_forward executed
+INFO  - 2019-12-02 21:27:16,716 - Backprop executed
+INFO  - 2019-12-02 21:27:16,717 - full_forward executed
+INFO  - 2019-12-02 21:27:16,717 - Backprop executed
+INFO  - 2019-12-02 21:27:16,717 - full_forward executed
+INFO  - 2019-12-02 21:27:16,718 - Backprop executed
+INFO  - 2019-12-02 21:27:16,718 - full_forward executed
+INFO  - 2019-12-02 21:27:16,718 - Backprop executed
+INFO  - 2019-12-02 21:27:16,719 - full_forward executed
+INFO  - 2019-12-02 21:27:16,719 - Backprop executed
+INFO  - 2019-12-02 21:27:16,720 - full_forward executed
+INFO  - 2019-12-02 21:27:16,720 - Backprop executed
+INFO  - 2019-12-02 21:27:16,721 - full_forward executed
+INFO  - 2019-12-02 21:27:16,721 - Backprop executed
+INFO  - 2019-12-02 21:27:16,721 - full_forward executed
+INFO  - 2019-12-02 21:27:16,722 - Backprop executed
+INFO  - 2019-12-02 21:27:16,722 - full_forward executed
+INFO  - 2019-12-02 21:27:16,722 - Backprop executed
+INFO  - 2019-12-02 21:27:16,723 - full_forward executed
+INFO  - 2019-12-02 21:27:16,723 - Backprop executed
+INFO  - 2019-12-02 21:27:16,724 - full_forward executed
+INFO  - 2019-12-02 21:27:16,724 - Backprop executed
+INFO  - 2019-12-02 21:27:16,725 - full_forward executed
+INFO  - 2019-12-02 21:27:16,725 - Backprop executed
+INFO  - 2019-12-02 21:27:16,725 - full_forward executed
+INFO  - 2019-12-02 21:27:16,726 - Backprop executed
+INFO  - 2019-12-02 21:27:16,726 - full_forward executed
+INFO  - 2019-12-02 21:27:16,726 - Backprop executed
+INFO  - 2019-12-02 21:27:16,727 - full_forward executed
+INFO  - 2019-12-02 21:27:16,727 - Backprop executed
+INFO  - 2019-12-02 21:27:16,728 - full_forward executed
+INFO  - 2019-12-02 21:27:16,728 - Backprop executed
+INFO  - 2019-12-02 21:27:16,729 - full_forward executed
+INFO  - 2019-12-02 21:27:16,729 - Backprop executed
+INFO  - 2019-12-02 21:27:16,729 - full_forward executed
+INFO  - 2019-12-02 21:27:16,730 - Backprop executed
+INFO  - 2019-12-02 21:27:16,730 - full_forward executed
+INFO  - 2019-12-02 21:27:16,730 - Backprop executed
+INFO  - 2019-12-02 21:27:16,731 - full_forward executed
+INFO  - 2019-12-02 21:27:16,731 - Backprop executed
+INFO  - 2019-12-02 21:27:16,732 - full_forward executed
+INFO  - 2019-12-02 21:27:16,732 - Backprop executed
+INFO  - 2019-12-02 21:27:16,733 - full_forward executed
+INFO  - 2019-12-02 21:27:16,733 - Backprop executed
+INFO  - 2019-12-02 21:27:16,733 - full_forward executed
+INFO  - 2019-12-02 21:27:16,734 - Backprop executed
+INFO  - 2019-12-02 21:27:16,734 - full_forward executed
+INFO  - 2019-12-02 21:27:16,734 - Backprop executed
+INFO  - 2019-12-02 21:27:16,735 - full_forward executed
+INFO  - 2019-12-02 21:27:16,735 - Backprop executed
+INFO  - 2019-12-02 21:27:16,736 - full_forward executed
+INFO  - 2019-12-02 21:27:16,736 - Backprop executed
+INFO  - 2019-12-02 21:27:16,737 - full_forward executed
+INFO  - 2019-12-02 21:27:16,737 - Backprop executed
+INFO  - 2019-12-02 21:27:16,737 - full_forward executed
+INFO  - 2019-12-02 21:27:16,738 - Backprop executed
+INFO  - 2019-12-02 21:27:16,738 - full_forward executed
+INFO  - 2019-12-02 21:27:16,738 - Backprop executed
+INFO  - 2019-12-02 21:27:16,739 - full_forward executed
+INFO  - 2019-12-02 21:27:16,739 - Backprop executed
+INFO  - 2019-12-02 21:27:16,740 - full_forward executed
+INFO  - 2019-12-02 21:27:16,740 - Backprop executed
+INFO  - 2019-12-02 21:27:16,741 - full_forward executed
+INFO  - 2019-12-02 21:27:16,741 - Backprop executed
+INFO  - 2019-12-02 21:27:16,741 - full_forward executed
+INFO  - 2019-12-02 21:27:16,741 - Backprop executed
+INFO  - 2019-12-02 21:27:16,742 - full_forward executed
+INFO  - 2019-12-02 21:27:16,742 - Backprop executed
+INFO  - 2019-12-02 21:27:16,743 - full_forward executed
+INFO  - 2019-12-02 21:27:16,743 - Backprop executed
+INFO  - 2019-12-02 21:27:16,744 - full_forward executed
+INFO  - 2019-12-02 21:27:16,744 - Backprop executed
+INFO  - 2019-12-02 21:27:16,745 - full_forward executed
+INFO  - 2019-12-02 21:27:16,745 - Backprop executed
+INFO  - 2019-12-02 21:27:16,745 - full_forward executed
+INFO  - 2019-12-02 21:27:16,745 - Backprop executed
+INFO  - 2019-12-02 21:27:16,746 - full_forward executed
+INFO  - 2019-12-02 21:27:16,746 - Backprop executed
+INFO  - 2019-12-02 21:27:16,747 - full_forward executed
+INFO  - 2019-12-02 21:27:16,747 - Backprop executed
+INFO  - 2019-12-02 21:27:16,748 - full_forward executed
+INFO  - 2019-12-02 21:27:16,748 - Backprop executed
+INFO  - 2019-12-02 21:27:16,749 - full_forward executed
+INFO  - 2019-12-02 21:27:16,749 - Backprop executed
+INFO  - 2019-12-02 21:27:16,750 - full_forward executed
+INFO  - 2019-12-02 21:27:16,750 - Backprop executed
+INFO  - 2019-12-02 21:27:16,750 - full_forward executed
+INFO  - 2019-12-02 21:27:16,750 - Backprop executed
+INFO  - 2019-12-02 21:27:16,751 - full_forward executed
+INFO  - 2019-12-02 21:27:16,751 - Backprop executed
+INFO  - 2019-12-02 21:27:16,752 - full_forward executed
+INFO  - 2019-12-02 21:27:16,752 - Backprop executed
+INFO  - 2019-12-02 21:27:16,753 - full_forward executed
+INFO  - 2019-12-02 21:27:16,753 - Backprop executed
+INFO  - 2019-12-02 21:27:16,754 - full_forward executed
+INFO  - 2019-12-02 21:27:16,754 - Backprop executed
+INFO  - 2019-12-02 21:27:16,755 - full_forward executed
+INFO  - 2019-12-02 21:27:16,755 - Backprop executed
+INFO  - 2019-12-02 21:27:16,755 - full_forward executed
+INFO  - 2019-12-02 21:27:16,756 - Backprop executed
+INFO  - 2019-12-02 21:27:16,756 - full_forward executed
+INFO  - 2019-12-02 21:27:16,756 - Backprop executed
+INFO  - 2019-12-02 21:27:16,757 - full_forward executed
+INFO  - 2019-12-02 21:27:16,757 - Backprop executed
+INFO  - 2019-12-02 21:27:16,758 - full_forward executed
+INFO  - 2019-12-02 21:27:16,758 - Backprop executed
+INFO  - 2019-12-02 21:27:16,759 - full_forward executed
+INFO  - 2019-12-02 21:27:16,759 - Backprop executed
+INFO  - 2019-12-02 21:27:16,760 - full_forward executed
+INFO  - 2019-12-02 21:27:16,760 - Backprop executed
