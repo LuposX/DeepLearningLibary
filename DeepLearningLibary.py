@@ -14,6 +14,9 @@ import logging  # used to log errors and info's in a file
 from datetime import date  # used to get a name for the log file
 import os  # used for creating a folder
 
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int, custom_weights_data: List = [], custom_weights: bool = False) -> None:
@@ -62,7 +65,11 @@ class NeuralNetwork:
         self.weight_change_cache: List = []
 
         self.logger.info("__init__ executed")
-
+        
+        # for visuliozing
+        self.x_train_loss_history = []
+        self.y_train_loss_history = []
+        
     def add_bias(self, x) -> List[float]:
         x = np.array([np.insert(x, 0, 1)])
         return x
@@ -331,7 +338,7 @@ class NeuralNetwork:
             else:
                 self.curr_layer = self.add_bias(self.curr_layer)
                 self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1], idx=idx)
-
+            
         self.output_model = self.curr_layer
 
     # TODO: "backprop" is work in progress
@@ -416,6 +423,9 @@ class NeuralNetwork:
                 self.backprop(self.y[idx])
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
+                self.x_train_loss_history.append(curr_epoch)
+                self.y_train_loss_history.append(self.loss(y[idx], self.output_model))
+
     def predict(self):
         """
         Used for predicting with the neural network
@@ -441,11 +451,22 @@ class NeuralNetwork:
             else:
                 running = True
 
+    def visulize(self):
+        data = {"x": self.x_train_loss_history, "train": self.y_train_loss_history}
+        data = pd.DataFrame(data, columns=["x", "train"])
+
+        sns.set_style("darkgrid")
+        plt.figure(figsize=(12, 6))
+        sns.lineplot(x="x", y="train", data=data, label="train", color="orange")
+        plt.xlabel("Time In Epochs")
+        plt.ylabel("Loss")
+        plt.title("Loss over Time")
+        plt.show()
 
 if __name__ == "__main__":
     # data for nn and target
     x = np.array([[0.05, 0.10]], dtype=float)
-    y = np.array([[0.01, 0.99]], dtype=float)
+    y = np.array([[0.5, 0.2]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 2, "activation_function": "none"},
@@ -457,5 +478,5 @@ if __name__ == "__main__":
 
     #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=2, epochs=20)
-    # NeuralNetwork_Inst.predict()
+    NeuralNetwork_Inst.train(how_often=100, epochs=500)
+    NeuralNetwork_Inst.visulize()
