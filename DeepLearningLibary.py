@@ -94,21 +94,20 @@ class NeuralNetwork:
 
     # mean square root
     def loss(self, y: List[float], y_hat: List[float]) -> List[float]:
-        return 1 / 2 * (y_hat - y) ** 2
+        return np.sum(1 / 2 * (y - y_hat) ** 2)
 
-    # TODO: remove round
     def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
         y = np.array([y]).T
-        return np.round(np.array(-y_hat + y), 2)
+        return np.array(-(y - y_hat))
 
     def sigmoid(self, x: List[float]) -> List[float]:
-        return np.round(1 / (1 + np.exp(-x)), 2)
+        return 1 / (1 + np.exp(-x))
 
     def sigmoid_derivative(self, x: List[float]) -> List[float]:
-        return np.round(self.sigmoid(x) * (1 - self.sigmoid(x)), 2)
+        return self.sigmoid(x) * (1 - self.sigmoid(x))
 
     def relu(self, x: List[float]) -> List[float]:
-        return np.round(np.maximum(0, x), 2)
+        return np.maximum(0, x)
 
     def relu_derivative(self, x: List[float]) -> List[float]:
         x[x <= 0] = 0
@@ -118,16 +117,15 @@ class NeuralNetwork:
     def linear(self, x: List[float]) -> List[float]:
         return x
 
-    # TODO: remove round
     def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
         if layer["activation_function"] == "linear":
-            return np.round(np.array(self.linear(curr_layer)), 2)
+            return np.array(self.linear(curr_layer))
 
         elif layer["activation_function"] == "relu":
-            return np.round(np.array(self.relu_derivative(curr_layer)), 2)
+            return np.array(self.relu_derivative(curr_layer))
 
         elif layer["activation_function"] == "sigmoid":
-            return np.round(np.array(self.sigmoid_derivative(curr_layer)), 2)
+            return np.array(self.sigmoid_derivative(curr_layer))
 
         else:
             raise Exception("Activation function not supported!")
@@ -358,7 +356,6 @@ class NeuralNetwork:
                     d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
                     d_J = self.loss_derivative(y=target, y_hat=self.output_model)
                     error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
-                    error_term = np.array([[0.055, -0.0868]])
                     self.error_term_cache.append(error_term)
                 else:
                     temp_idx = "z" + str(idx)
@@ -377,11 +374,18 @@ class NeuralNetwork:
                 err_temp = error_term.T
                 temp_idx = "a" + str(idx - 1)
                 cache_tmp = self.layer_cache[temp_idx]
+                cache_tmp = np.delete(cache_tmp, 0, 1)  # delete bias
                 weight_change = err_temp * cache_tmp
                 self.weight_change_cache.append(weight_change)
 
-        for idx, item in reversed(list(enumerate(self.weight_change_cache))):  # reversed because we go backwards
-            self.weights[idx - 1] = self.weights[idx - 1] + (self.alpha * self.weight_change_cache[idx])  # updating weight
+        for idx in range(0, len(self.weight_change_cache)):  # reversed because we go backwards
+            curr_weight = self.weights[-idx - 1]
+            curr_weight = np.delete(curr_weight, 0, 1)  # delete bias
+            weight_change_tmp = self.weight_change_cache[idx]
+
+            total_weight_change = self.alpha * weight_change_tmp  # updating weight
+            curr_weight = curr_weight - total_weight_change
+            self.weights[-idx - 1] = curr_weight
 
 
     # TODO: "train" is work in progress
@@ -438,18 +442,18 @@ class NeuralNetwork:
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[0.7, 0.6]], dtype=float)
-    y = np.array([[0, 1]], dtype=float)
+    x = np.array([[0.05, 0.10]], dtype=float)
+    y = np.array([[0.01, 0.99]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
     nn_architecture = [{"layer_type": "input_layer", "layer_size": 2, "activation_function": "none"},
                        {"layer_type": "hidden_layer", "layer_size": 2, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 2, "activation_function": "sigmoid"}]
 
-    weights_data = [np.array([[0.3, 0.8, 0.5], [-0.2, -0.6, 0.7]], dtype=float), np.array([[0.2, 0.4, 0.3], [0.1, -0.4, 0.9]], dtype=float)]
+    weights_data = [np.array([[0.35, 0.15, 0.2], [0.35, 0.25, 0.3]], dtype=float), np.array([[0.6, 0.4, 0.45], [0.6, 0.5, 0.55]], dtype=float)]
     weights_data = weights_data
 
     #, custom_weights=True, custom_weights_data=weights_data
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=100, epochs=1000)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5, custom_weights=True, custom_weights_data=weights_data)
+    NeuralNetwork_Inst.train(how_often=1, epochs=5)
     # NeuralNetwork_Inst.predict()
