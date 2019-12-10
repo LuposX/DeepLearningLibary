@@ -387,6 +387,8 @@ class NeuralNetwork:
             curr_weight = curr_weight - total_weight_change
             self.weights[-idx - 1] = curr_weight
 
+        for i in range(0, len(self.weights)):
+            self.weights[i] = np.insert(self.weights[i], obj=0, values=0.5, axis=1)  # insert the weights for the biases
 
     # TODO: "train" is work in progress
     def train(self, how_often, epochs=20) -> None:
@@ -450,10 +452,10 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 2, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 2, "activation_function": "sigmoid"}]
 
-    weights_data = [np.array([[0.35, 0.15, 0.2], [0.35, 0.25, 0.3]], dtype=float), np.array([[0.6, 0.4, 0.45], [0.6, 0.5, 0.55]], dtype=float)]
+    weights_data = [np.array([[0.5, 0.15, 0.2], [0.5, 0.25, 0.3]], dtype=float), np.array([[0.6, 0.4, 0.45], [0.6, 0.5, 0.55]], dtype=float)]
     weights_data = weights_data
 
     #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=1, epochs=5)
+    NeuralNetwork_Inst.train(how_often=2, epochs=20)
     # NeuralNetwork_Inst.predict()
