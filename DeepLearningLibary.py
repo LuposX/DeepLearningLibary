@@ -2,7 +2,7 @@
 Author: Lupos
 Purpose: Practising coding NN
 Date: 17.11.2019
-Description: Solving a XOR with a NN.
+Description: test NN
 """
 
 from typing import List, Dict  # used for typehints
@@ -13,13 +13,15 @@ import numpy as np  # used for forward pass, weight init, ect.
 import logging  # used to log errors and info's in a file
 from datetime import date  # used to get a name for the log file
 import os  # used for creating a folder
+import pathlib
 
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 class NeuralNetwork:
-    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int, custom_weights_data: List = [], custom_weights: bool = False) -> None:
+    def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
+                 custom_weights_data: List = [], custom_weights: bool = False, level_of_debugging=logging.WARNING) -> None:
         """
         Constructor of the class Neural Network.
 
@@ -40,7 +42,7 @@ class NeuralNetwork:
         -------
         None
         """
-        self.level_of_debugging = logging.INFO
+        self.level_of_debugging = level_of_debugging
         self.logger: object = self.init_logging(self.level_of_debugging)  # initializing of logging
         # Dimension checks
         self.check_input_output_dimension(x, y, nn_architecture)
@@ -179,9 +181,9 @@ class NeuralNetwork:
             return a logger object which is used to log errors.
         """
         # creating a directory for "logs" if the directory doesnt exist
-        path = os.getcwd()
+        path = pathlib.Path.cwd()
         name = "logs"
-        full_path = path + "\\" + name
+        full_path = path / name
         try:
             if not os.path.isdir(full_path):
                 os.mkdir(full_path)
@@ -194,7 +196,7 @@ class NeuralNetwork:
 
         LOG_FORMAT: str = "%(levelname)s  - %(asctime)s - %(message)s"  # logging format
 
-        logging.basicConfig(filename=full_path + "\\" + today_eu + ".log", level=level_of_debugging, format=LOG_FORMAT)
+        logging.basicConfig(filename=full_path / str(today_eu + ".log"), level=level_of_debugging, format=LOG_FORMAT)
         logger = logging.getLogger()
 
         # Test logger
@@ -278,7 +280,7 @@ class NeuralNetwork:
             return temp_acti
 
         else:
-            raise Exception("Activation function not supported!")
+            raise NotImplementedError("Activation function not supported!")
 
     def forward(self, weight: List[float], x: List[float], layer: Dict, idx: int) -> List[float]:
         """
@@ -353,6 +355,7 @@ class NeuralNetwork:
         -------
         None
         """
+        self.bias_weight_tmp = []
         self.weight_change_cache = []
         self.error_term_cache = []
         self.logger.info("Backprop executed")
@@ -406,11 +409,10 @@ class NeuralNetwork:
             self.weights[-idx - 1] = curr_weight
 
         # update bias
-        if layer["layer_type"] == "output_layer":
-            for i in range(0, len(self.bias_weight_tmp)):
-                tmp_weight_bias = np.asarray(self.bias_weight_tmp[i])
-                tmp_error_term_bias = np.asarray(self.error_term_cache[i])
-                self.bias_weight_tmp[i] = tmp_weight_bias - (self.alpha * tmp_error_term_bias)
+        for i in range(0, len(self.bias_weight_tmp)):
+            tmp_weight_bias = np.asarray(self.bias_weight_tmp[i])
+            tmp_error_term_bias = np.asarray(self.error_term_cache[i])
+            self.bias_weight_tmp[i] = tmp_weight_bias - (self.alpha * tmp_error_term_bias)
 
         # insert bias in weights
         for i in range(0, len(self.weights)):
@@ -484,18 +486,18 @@ class NeuralNetwork:
 
 if __name__ == "__main__":
     # data for nn and target
-    x = np.array([[1, 0]], dtype=float)
-    y = np.array([[0, 1]], dtype=float)
+    x = np.array([[1, 0, 0], [1, 1, 1], [0, 1, 1], [1, 0, 1]], dtype=float)
+    y = np.array([[0, 1, 1], [0, 0, 0], [1, 0, 0], [0, 1, 0]], dtype=float)
 
     # nn_architecture is WITH input-layer and output-layer
-    nn_architecture = [{"layer_type": "input_layer", "layer_size": 2, "activation_function": "none"},
-                       {"layer_type": "hidden_layer", "layer_size": 2, "activation_function": "sigmoid"},
-                       {"layer_type": "output_layer", "layer_size": 2, "activation_function": "sigmoid"}]
+    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
+                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "sigmoid"},
+                       {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
-    weights_data = [np.array([[2, 0.15, 0.2], [2, 0.25, 0.3]], dtype=float), np.array([[4, 0.4, 0.45], [4, 0.5, 0.55]], dtype=float)]
+    weights_data = [np.array([[0.5, 0.1, 0.3, 0.5], [0.5, 0.2, 0.4, 0.6]], dtype=float), np.array([[0.5, 0.7, 0.9], [0.5, 0.8, 0.1]], dtype=float)]
     weights_data = weights_data
 
     #, custom_weights=True, custom_weights_data=weights_data
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.1, 5, custom_weights=True, custom_weights_data=weights_data)
-    NeuralNetwork_Inst.train(how_often=10, epochs=400)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5)
+    NeuralNetwork_Inst.train(how_often=200, epochs=1000)
     NeuralNetwork_Inst.visulize()
