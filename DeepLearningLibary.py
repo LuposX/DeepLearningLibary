@@ -463,9 +463,14 @@ class NeuralNetwork:
                 tmp_input = input("Enter " + str(i) + " value: ")
                 pred_data.append(tmp_input)
 
-            pred_data.append(1)  # append bias
+            pred_data_without_bias = np.asarray([pred_data], dtype=float)
 
-            self.full_forward(np.asarray([pred_data], dtype=float))
+            pred_data.insert(0, 1)  # append bias
+            pred_data = np.asarray([pred_data], dtype=float)
+
+            self.full_forward(data=pred_data)
+
+            print("Input: " + str(pred_data_without_bias))
             print("Predicted Output: ", self.output_model.flatten())
             print(" ")
 
@@ -503,5 +508,5 @@ if __name__ == "__main__":
     #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5)
     NeuralNetwork_Inst.train(how_often=200, epochs=400)
-    NeuralNetwork_Inst.visulize()
-    #NeuralNetwork_Inst.predict()
+    # NeuralNetwork_Inst.visulize()
+    NeuralNetwork_Inst.predict()
