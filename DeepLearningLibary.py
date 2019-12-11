@@ -105,7 +105,8 @@ class NeuralNetwork:
 
     # mean square root
     def loss(self, y: List[float], y_hat: List[float]) -> List[float]:
-        return np.sum(1 / 2 * (y - y_hat) ** 2)
+        loss = np.sum(1 / 2 * (y - y_hat) ** 2)
+        return loss
 
     def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
         y = np.array([y]).T
@@ -161,8 +162,8 @@ class NeuralNetwork:
             print("For iteration/trainings-example: #" + str(curr_epoch) + "/#"+ str(curr_trainingsdata))
             print("Input: " + str(data))
             print("Actual Output: " + str(target))
-            print("Predicted Output: " + str(self.output_model))
-            print("Loss: " + str(self.loss(y=target, y_hat=self.output_model)))
+            print("Predicted Output: " + str(self.output_model.flatten()))
+            print("Loss: " + str(self.loss(y=target, y_hat=self.output_model.flatten())))
             print("Value of last weight change: " + str(self.weight_change_cache[-1]))
             print("\n")
 
@@ -445,7 +446,7 @@ class NeuralNetwork:
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
                 self.x_train_loss_history.append(curr_epoch)
-                self.y_train_loss_history.append(self.loss(y[idx], self.output_model))
+                self.y_train_loss_history.append(self.loss(y[idx], self.output_model.flatten()))
 
     def predict(self):
         """
@@ -462,8 +463,10 @@ class NeuralNetwork:
                 tmp_input = input("Enter " + str(i) + " value: ")
                 pred_data.append(tmp_input)
 
+            pred_data.append(1)  # append bias
+
             self.full_forward(np.asarray([pred_data], dtype=float))
-            print("Predicted Output: ", self.output_model)
+            print("Predicted Output: ", self.output_model.flatten())
             print(" ")
 
             running = input('Enter "exit" if you want to exit. Else press "enter".')
@@ -499,5 +502,6 @@ if __name__ == "__main__":
 
     #, custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5)
-    NeuralNetwork_Inst.train(how_often=200, epochs=1000)
+    NeuralNetwork_Inst.train(how_often=200, epochs=400)
     NeuralNetwork_Inst.visulize()
+    #NeuralNetwork_Inst.predict()
