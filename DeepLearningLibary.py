@@ -21,7 +21,8 @@ import matplotlib.pyplot as plt
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
-                 custom_weights_data: List = [], custom_weights: bool = False, level_of_debugging=logging.WARNING) -> None:
+                 custom_weights_data: List = [], loss_type: str = "mse", custom_weights: bool = False,
+                 level_of_debugging=logging.WARNING) -> None:
         """
         Constructor of the class Neural Network.
 
@@ -73,6 +74,8 @@ class NeuralNetwork:
         self.y_train_loss_history = []
 
         self.bias_weight_tmp = []
+
+        self.loss_type = loss_type
         
     def add_bias(self, x) -> List[float]:
         x = np.array([np.insert(x, 0, 1)])
@@ -103,14 +106,88 @@ class NeuralNetwork:
             "layer_size"], 'Check the number of output Neurons and "Y".'  # check if the first element in "y" has the right shape
         assert len(x) == len(y), "Check that X and Y have the corresponding values."
 
+    def loss_type_choice(self, y: List[float], y_hat: List[float], derivative: bool = False):
+        """
+        This function chooses the appropiates loss function depending on the loss type
+        Parameters
+        ----------
+        loss_type: type of loss for example "mse" or "cross entropy"
+
+        Returns
+        -------
+
+        """
+        if not derivative:
+            if self.loss_type.lower() == "mse":
+                return self.loss_mse(y, y_hat)
+
+            elif "cross" in self.loss_type.lower() and "entropy" in self.loss_type.lower():
+                return self.loss_cross_entropy(y=y, y_hat=y_hat)
+
+            else:
+                raise NotImplementedError("There is no loss with that name.")
+
+
+        elif derivative:
+            if self.loss_type.lower() == "mse":
+                return self.loss_mse_derivative(y, y_hat)
+
+            elif "cross" in self.loss_type.lower() and "entropy" in self.loss_type.lower():
+                return self.loss_cross_entropy_derivative(y=y, y_hat=y_hat)
+
+            else:
+                raise NotImplementedError("There is no loss with that name.")
+
+
+        else:
+            raise ValueError("Variable derivative not set for loss function.")
+
     # mean square root
-    def loss(self, y: List[float], y_hat: List[float]) -> List[float]:
+    def loss_mse(self, y: List[float], y_hat: List[float]) -> List[float]:
         loss = np.sum(1 / 2 * (y - y_hat) ** 2)
         return loss
 
-    def loss_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
+    def loss_mse_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
         y = np.array([y]).T
-        return np.array(-(y - y_hat))
+        tmp_dev = -(y - y_hat)
+        loss_dev = np.array(tmp_dev)
+        return loss_dev
+
+    def loss_cross_entropy(self, y: List[float], y_hat: List[float]) -> List[float]:
+        loss = []
+
+        for idx, y_hat_item in enumerate(y_hat):
+            if y[idx] == 1:
+                tmp_loss = -np.log10(y_hat_item)
+                loss.append(tmp_loss)
+            else:
+                tmp_loss = -np.log10(1 - y_hat_item)
+                loss.append(tmp_loss)
+
+        loss = np.sum(loss)
+        return loss
+
+    def loss_cross_entropy_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
+
+        y = y.tolist()
+        y_hat = y_hat.flatten().tolist()
+
+        loss = []
+        for idx, y_hat_item in enumerate(y_hat):
+            if y[idx] == 1:
+                tmp_loss = -1 * (1 / float(y_hat_item))
+                loss.append(tmp_loss)
+            else:
+                tmp_loss = 1 / (1 - float(y_hat_item))
+                loss.append(tmp_loss)
+
+        return np.array(loss)
+
+    def tanh(self, x: List[float]) -> List[float]:
+        return 2 / (1 + np.exp(-2 * x)) - 1
+
+    def tanh_derivative(self, x: List[float]) -> List[float]:
+        return 1 - (self.tanh(x) ** 2)
 
     def sigmoid(self, x: List[float]) -> List[float]:
         return 1 / (1 + np.exp(-x))
@@ -163,7 +240,7 @@ class NeuralNetwork:
             print("Input: " + str(data))
             print("Actual Output: " + str(target))
             print("Predicted Output: " + str(self.output_model.flatten()))
-            print("Loss: " + str(self.loss(y=target, y_hat=self.output_model.flatten())))
+            print("Loss: " + str(self.loss_type_choice(y=target, y_hat=self.output_model.flatten())))
             print("Value of last weight change: " + str(self.weight_change_cache[-1]))
             print("\n")
 
@@ -367,7 +444,7 @@ class NeuralNetwork:
                 if layer["layer_type"] == "output_layer":
                     temp_idx = "z" + str(idx)
                     d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
-                    d_J = self.loss_derivative(y=target, y_hat=self.output_model)
+                    d_J = self.loss_type_choice(y=target, y_hat=self.output_model, derivative=True)
                     error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
                     self.error_term_cache.append(error_term)
 
@@ -446,7 +523,7 @@ class NeuralNetwork:
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
                 self.x_train_loss_history.append(curr_epoch)
-                self.y_train_loss_history.append(self.loss(y[idx], self.output_model.flatten()))
+                self.y_train_loss_history.append(self.loss_type_choice(y=y[idx], y_hat=self.output_model.flatten()))
 
     def predict(self):
         """
@@ -506,7 +583,7 @@ if __name__ == "__main__":
     weights_data = weights_data
 
     #, custom_weights=True, custom_weights_data=weights_data
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.5, 5)
-    NeuralNetwork_Inst.train(how_often=200, epochs=400)
-    # NeuralNetwork_Inst.visulize()
-    NeuralNetwork_Inst.predict()
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.1, 5, loss_type="cross-entropy")
+    NeuralNetwork_Inst.train(how_often=20, epochs=300)
+    NeuralNetwork_Inst.visulize()
+    #NeuralNetwork_Inst.predict()
