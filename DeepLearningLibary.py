@@ -52,13 +52,11 @@ class NeuralNetwork:
         self.input: List = self.add_bias(x)
 
         self.output_model: float = np.zeros(y.shape)
-        self.layer_cache = {}  # later used for derivatives
-        self.error_term_cache = []
+        self.layer_value_cache = {}  # later used for derivatives
+        self.error_term_cache: List = []
         self.weight_change_cache: List = []
-        self.x_train_loss_history = []  # for visualizing
-        self.y_train_loss_history = []   # for visualizing
-
-        self.bias_weight_tmp = []
+        self.x_train_loss_history: List = []  # for visualizing
+        self.y_train_loss_history: List = []   # for visualizing
 
         self.weights: List = []  # np.array([])
         self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
@@ -172,7 +170,7 @@ class NeuralNetwork:
 
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
-            self.layer_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
+            self.layer_value_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
 
             return temp_acti
 
@@ -187,7 +185,7 @@ class NeuralNetwork:
 
             # the name of the key of the dict is the index of current layer
             idx_name = self.nn_architecture.index(layer)
-            self.layer_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
+            self.layer_value_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
 
             return temp_acti
 
@@ -225,7 +223,7 @@ class NeuralNetwork:
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
         tmp_dict = {"z" + str(idx_name): tmp_curr_layer_for_chache}
-        self.layer_cache.update(tmp_dict)  # append the "z" value | not activated value
+        self.layer_value_cache.update(tmp_dict)  # append the "z" value | not activated value
 
         curr_layer = self.activate_neuron(curr_layer, layer)
 
@@ -243,13 +241,13 @@ class NeuralNetwork:
             List with the values of the output Layer.
         """
         self.logger.info("full_forward executed")
-        self.layer_cache = {}  # delete cache used from previous iteration
+        self.layer_value_cache = {}  # delete cache used from previous iteration
         for idx in range(0, len(self.nn_architecture) - 1):
             self.logger.debug("Current-index (full_forward methode): " + str(idx))
 
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
-                self.layer_cache.update({"z0": data})
-                self.layer_cache.update({"a0": data})
+                self.layer_value_cache.update({"z0": data})
+                self.layer_value_cache.update({"a0": data})
                 curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1],
                                                idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
@@ -269,7 +267,7 @@ class NeuralNetwork:
         -------
         None
         """
-        self.bias_weight_tmp = []
+        bias_weight_tmp = []
         self.weight_change_cache = []
         self.error_term_cache = []
         self.logger.info("Backprop executed")
@@ -279,24 +277,24 @@ class NeuralNetwork:
                 # calculating the error term
                 if layer["layer_type"] == "output_layer":
                     temp_idx = "z" + str(idx)
-                    d_a = activation_derivative(layer, self.layer_cache[temp_idx])
+                    d_a = activation_derivative(layer, self.layer_value_cache[temp_idx])
                     d_J = loss_type_choice(y=target, y_hat=self.output_model, loss_type=self.loss_type, derivative=True)
                     error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
                     self.error_term_cache.append(error_term)
 
                     tmp_matrix_weight = np.asarray(self.weights[idx - 1])
                     tmp_bias_weight_t = np.array(tmp_matrix_weight.T[0])
-                    self.bias_weight_tmp.append([tmp_bias_weight_t])
+                    bias_weight_tmp.append([tmp_bias_weight_t])
                 else:
                     temp_idx = "z" + str(idx)
-                    layer_cache_tmp_drop_bias = np.delete(self.layer_cache[temp_idx], 0, 1)
+                    layer_cache_tmp_drop_bias = np.delete(self.layer_value_cache[temp_idx], 0, 1)
 
                     d_a = activation_derivative(layer, layer_cache_tmp_drop_bias)
 
                     d_J = 0
                     for item in reversed(self.error_term_cache):
                         tmp_matrix_weight = np.asarray(self.weights[idx - 1])
-                        self.bias_weight_tmp.append([tmp_matrix_weight.T[0]])
+                        bias_weight_tmp.append([tmp_matrix_weight.T[0]])
 
                         weights_tmp_drop_bias = np.delete(self.weights[idx], 0, 1)
                         d_J = d_J + np.dot(weights_tmp_drop_bias.T, item.T)
@@ -307,7 +305,7 @@ class NeuralNetwork:
 
                 err_temp = error_term.T
                 temp_idx = "a" + str(idx - 1)
-                cache_tmp = self.layer_cache[temp_idx]
+                cache_tmp = self.layer_value_cache[temp_idx]
                 cache_tmp = np.delete(cache_tmp, 0, 1)  # delete bias
                 weight_change = err_temp * cache_tmp
                 self.weight_change_cache.append(weight_change)
@@ -323,14 +321,14 @@ class NeuralNetwork:
             self.weights[-idx - 1] = curr_weight
 
         # update bias
-        for i in range(0, len(self.bias_weight_tmp)):
-            tmp_weight_bias = np.asarray(self.bias_weight_tmp[i])
+        for i in range(0, len(bias_weight_tmp)):
+            tmp_weight_bias = np.asarray(bias_weight_tmp[i])
             tmp_error_term_bias = np.asarray(self.error_term_cache[i])
-            self.bias_weight_tmp[i] = tmp_weight_bias - (self.alpha * tmp_error_term_bias)
+            bias_weight_tmp[i] = tmp_weight_bias - (self.alpha * tmp_error_term_bias)
 
         # insert bias in weights
         for i in range(0, len(self.weights)):
-            self.weights[i] = np.insert(self.weights[i], obj=0, values=self.bias_weight_tmp[i],
+            self.weights[i] = np.insert(self.weights[i], obj=0, values=bias_weight_tmp[i],
                                         axis=1)  # insert the weights for the biases
 
     # TODO: "train" is work in progress
