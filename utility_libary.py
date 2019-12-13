@@ -234,7 +234,7 @@ def linear(x: List[float]) -> List[float]:
     return x
 
 
-def init_logging(level_of_debugging: str) -> object:
+def init_logging(logger: object) -> object:
     """
     Gets executed from the constructor "__init__". Initializes the logger.
 
@@ -248,31 +248,13 @@ def init_logging(level_of_debugging: str) -> object:
     Object
         return a logger object which is used to log errors.
     """
-    # create a directory for "logs" if the directory doesn't exist
-    path = pathlib.Path.cwd()
-    name = "logs"
-    full_path = path / name
-    try:
-        if not os.path.isdir(full_path):
-            os.mkdir(full_path)
-    except OSError:
-        print("ERROR: Couldn't create a log folder.")
+    if logger:
+        logger.info("------------------------------------------------")
+        logger.info("Start of the program")
+        logger.info("------------------------------------------------")
+        logger.info("__init__ executed")
 
-    # create and configure logger
-    today = date.today()  # get current date
-    today_eu = today.strftime("%d-%m-%Y")  # european date format
-
-    LOG_FORMAT: str = "%(levelname)s  - %(asctime)s - %(message)s"  # logging format
-
-    logging.basicConfig(filename=full_path / str(today_eu + ".log"), level=level_of_debugging, format=LOG_FORMAT)
-    logger = logging.getLogger()
-
-    # Test logger
-    logger.info("------------------------------------------------")
-    logger.info("Start of the program")
-    logger.info("------------------------------------------------")
-
-    return logger
+        return logger
 
 
 def activation_derivative(layer: Dict, curr_layer: List[float]) -> List[float]:

@@ -10,13 +10,14 @@ from utility_libary import *
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
-                 custom_weights_data: List = [], loss_type: str = "mse", custom_weights: bool = False,
-                 level_of_debugging=logging.WARNING) -> None:
+                 custom_weights_data: List = [], logger: object = None, loss_type: str = "mse", custom_weights: bool = False,) -> None:
         """
         Constructor of the class Neural Network.
 
         Parameters
         ----------
+        logger: object
+            If set stuff get logged if not set than not :)
         loss_type: str
             Set the type of loss yo uwant to use for the neural network. e.g "mse", "cross-entropy".
         custom_weights_data: bool
@@ -39,17 +40,16 @@ class NeuralNetwork:
         -------
         None
         """
-        self.logger: object = init_logging(level_of_debugging)  # initializing of logging
-        self.logger.info("__init__ executed")
+        self.logger: object = init_logging(logger)  # initializing of logging
         np.random.seed(seed)  # set seed for reproducibility
 
-        self.check_input_output_dimension(x, y, nn_architecture)  # Dimension checks
+        self._check_input_output_dimension(x, y, nn_architecture)  # Dimension checks
 
         self.nn_architecture: List[Dict] = nn_architecture
         self.alpha: float = alpha
         self.loss_type = loss_type
         self.y: List = y
-        self.input: List = self.add_bias(x)
+        self.input: List = self._add_bias(x)
 
         self.output_model: float = np.zeros(y.shape)
         self.layer_value_cache = {}  # later used for derivatives
@@ -61,11 +61,21 @@ class NeuralNetwork:
         self.weights: List = []  # np.array([])
         self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
 
-    def add_bias(self, x) -> List[float]:
+    def _add_bias(self, x) -> List[float]:
+        """
+        Is used internal
+        Parameters
+        ----------
+        x
+
+        Returns
+        -------
+
+        """
         x = np.array([np.insert(x, 0, 1)])
         return x
 
-    def check_input_output_dimension(self, x, y, nn_architecture):
+    def _check_input_output_dimension(self, x, y, nn_architecture):
         """
         Gets executed from the constructor "__init__". Is used
         to check if the dimensions of input and output values correspond to the neuron size
@@ -127,7 +137,8 @@ class NeuralNetwork:
         List
             Weights of the Neural Network.
         """
-        self.logger.info("init_weights executed")
+        if self.logger:
+            self.logger.info("init_weights executed")
         for idx in range(0, len(self.nn_architecture) - 1):  # "len() - 1" because the output layer doesn't has weights
 
             if not custom_weights:
@@ -164,7 +175,7 @@ class NeuralNetwork:
 
             # add bias to cache when not output layer
             if not layer["layer_type"] == "output_layer":
-                tmp_temp_acti_for_chache = self.add_bias(temp_acti)
+                tmp_temp_acti_for_chache = self._add_bias(temp_acti)
             else:
                 tmp_temp_acti_for_chache = temp_acti.T
 
@@ -179,7 +190,7 @@ class NeuralNetwork:
 
             # add bias to cache when not output layer
             if not layer["layer_type"] == "output_layer":
-                tmp_temp_acti_for_chache = self.add_bias(temp_acti)
+                tmp_temp_acti_for_chache = self._add_bias(temp_acti)
             else:
                 tmp_temp_acti_for_chache = temp_acti.T
 
@@ -216,7 +227,7 @@ class NeuralNetwork:
 
         # add bias to cache when not output layer
         if not layer["layer_type"] == "output_layer":
-            tmp_curr_layer_for_chache = self.add_bias(curr_layer)
+            tmp_curr_layer_for_chache = self._add_bias(curr_layer)
         else:
             tmp_curr_layer_for_chache = curr_layer.T
 
@@ -240,10 +251,12 @@ class NeuralNetwork:
         List
             List with the values of the output Layer.
         """
-        self.logger.info("full_forward executed")
+        if self.logger:
+            self.logger.info("full_forward executed")
         self.layer_value_cache = {}  # delete cache used from previous iteration
         for idx in range(0, len(self.nn_architecture) - 1):
-            self.logger.debug("Current-index (full_forward methode): " + str(idx))
+            if self.logger:
+                self.logger.debug("Current-index (full_forward methode): " + str(idx))
 
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
                 self.layer_value_cache.update({"z0": data})
@@ -251,7 +264,7 @@ class NeuralNetwork:
                 curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1],
                                                idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
-                curr_layer = self.add_bias(curr_layer)
+                curr_layer = self._add_bias(curr_layer)
                 curr_layer = self.forward(self.weights[idx], curr_layer, self.nn_architecture[idx + 1],
                                                idx=idx)
 
@@ -260,7 +273,7 @@ class NeuralNetwork:
     # TODO: "backprop" is work in progress
     def backprop(self, target: List[float]) -> None:  # application of the chain rule to find derivative
         """
-        Gets executed from the method "forward_backprop". This method handels
+        Gets executed from the method "forward_backprop". This method is about
         the backpropagation of the Neural Network.
 
         Returns
@@ -270,8 +283,12 @@ class NeuralNetwork:
         bias_weight_tmp = []
         self.weight_change_cache = []
         self.error_term_cache = []
-        self.logger.info("Backprop executed")
+        if self.logger:
+            self.logger.info("Backprop executed")
         for idx, layer in reversed(list(enumerate(nn_architecture))):  # reversed because we go backwards
+            if self.logger:
+                self.logger.debug("Current layer: ", str(layer))
+
             if not layer["layer_type"] == "input_layer":  # if we are in the input layer
 
                 # calculating the error term
@@ -310,6 +327,9 @@ class NeuralNetwork:
                 weight_change = err_temp * cache_tmp
                 self.weight_change_cache.append(weight_change)
 
+                if self.logger:
+                    self.logger.debug("Current error_term: ", str(error_term))
+
         # update weights
         for idx in range(0, len(self.weight_change_cache)):  # reversed because we go backwards
             curr_weight = self.weights[-idx - 1]
@@ -347,10 +367,13 @@ class NeuralNetwork:
         -------
         None
         """
-        self.logger.info("Train-method executed")
+        if self.logger:
+            self.logger.info("Train-method executed")
         for curr_epoch in range(epochs):
+            if self.logger:
+                self.logger.debug("Current number of epochs: ", str(curr_epoch))
             for idx, trainings_data in enumerate(x):
-                trainings_data_with_bias = self.add_bias(trainings_data)
+                trainings_data_with_bias = self._add_bias(trainings_data)
 
                 self.full_forward(trainings_data_with_bias)
                 self.backprop(self.y[idx])
@@ -376,6 +399,9 @@ class NeuralNetwork:
 
             pred_data_without_bias = np.asarray([pred_data], dtype=float)
 
+            if self.logger:
+                self.logger.debug("Current input-predict-data: ", str(pred_data_without_bias))
+
             pred_data.insert(0, 1)  # append bias
             pred_data = np.asarray([pred_data], dtype=float)
 
@@ -385,6 +411,9 @@ class NeuralNetwork:
             print("Predicted Output: ", self.output_model.flatten())
             print(" ")
 
+            if self.logger:
+                self.logger.debug("Current output-predict-data: ", str(self.output_model))
+
             running = input('Enter "exit" if you want to exit. Else press "enter".')
             if running == "exit" or running == "Exit":
                 running = False
@@ -393,6 +422,25 @@ class NeuralNetwork:
 
 
 if __name__ == "__main__":
+    # create a directory for "logs" if the directory doesn't exist
+    path = pathlib.Path.cwd()
+    name = "logs"
+    full_path = path / name
+    try:
+        if not os.path.isdir(full_path):
+            os.mkdir(full_path)
+    except OSError:
+        print("ERROR: Couldn't create a log folder.")
+
+    # create and configure logger
+    today = date.today()  # get current date
+    today_eu = today.strftime("%d-%m-%Y")  # european date format
+
+    LOG_FORMAT: str = "%(levelname)s  - %(asctime)s - %(message)s"  # logging format
+
+    logging.basicConfig(filename=full_path / str(today_eu + ".log"), level=logging.CRITICAL, format=LOG_FORMAT)
+    logger = logging.getLogger()
+
     # data for nn and target
     x = np.array([[1, 0, 0], [1, 1, 1], [0, 1, 1], [1, 0, 1]], dtype=float)
     y = np.array([[0, 1, 1], [0, 0, 0], [1, 0, 0], [0, 1, 0]], dtype=float)
