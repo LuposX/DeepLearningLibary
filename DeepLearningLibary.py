@@ -60,7 +60,7 @@ class NeuralNetwork:
         self.y_train_loss_history: List = []  # for visualizing
 
         self.weights: List = []  # np.array([])
-        self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
+        self._init_weights(custom_weights, custom_weights_data)  # initializing of weights
 
     def _add_bias(self, x) -> List[float]:
         """
@@ -101,7 +101,7 @@ class NeuralNetwork:
             "layer_size"], 'Check the number of output Neurons and "Y".'  # check if the first element in "y" has the right shape
         assert len(x) == len(y), "Check that X and Y have the corresponding values."
 
-    def communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float],
+    def _communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float],
                       how_often: int = 10) -> None:
         """
         Gets executed from the method "train". Communicates information
@@ -131,7 +131,7 @@ class NeuralNetwork:
                 sep="\n"
             )
 
-    def init_weights(self, custom_weights: bool, custom_weights_data: List) -> List[float]:
+    def _init_weights(self, custom_weights: bool, custom_weights_data: List) -> List[float]:
         """
         Gets executed from the constructor "__init__".
         Initializes the weight in the whole Neural Network.
@@ -378,7 +378,7 @@ class NeuralNetwork:
 
                 self._full_forward(trainings_data_with_bias)
                 self._backprop(self.y[idx])
-                self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
+                self._communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
                 self.x_train_loss_history.append(curr_epoch)
                 self.y_train_loss_history.append(
@@ -434,5 +434,5 @@ if __name__ == "__main__":
                        {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.1, 5, loss_type="cross-entropy")
-    NeuralNetwork_Inst.train(how_often=20, epochs=300)
+    NeuralNetwork_Inst.train(how_often=20, epochs=100)
     # visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history)
