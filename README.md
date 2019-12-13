@@ -23,7 +23,7 @@ With this libary you can create layers for a neural network and combine them to 
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[LICENSE](https://github.com/LuposX/DeepLearningLibary/blob/master/LICENSE)
+[LICENSE Deep-learning-libary](https://github.com/LuposX/DeepLearningLibary/blob/master/LICENSE)
 ## Contributing
 
 1.  Fork it (<https://github.com/LuposX/BostonHousingPrediction/fork>)
