@@ -301,3 +301,39 @@ def activation_derivative(layer: Dict, curr_layer: List[float]) -> List[float]:
     else:
         raise Exception("Activation function not supported!")
 
+
+def loss_type_choice(y: List[float], y_hat: List[float], loss_type: str, derivative: bool = False):
+    """
+    This function chooses the appropiates loss function depending on the loss type
+    Parameters
+    ----------
+    loss_type: type of loss for example "mse" or "cross entropy"
+
+    Returns
+    -------
+
+    """
+    if not derivative:
+        if loss_type.lower() == "mse":
+            return loss_mse(y, y_hat)
+
+        elif "cross" in loss_type.lower() and "entropy" in loss_type.lower():
+            return loss_cross_entropy(target=y, pred_target=y_hat)
+
+        else:
+            raise NotImplementedError("There is no loss with that name.")
+
+
+    elif derivative:
+        if loss_type.lower() == "mse":
+            return loss_mse_derivative(y, y_hat)
+
+        elif "cross" in loss_type.lower() and "entropy" in loss_type.lower():
+            return loss_cross_entropy_derivative(target=y, pred_target=y_hat)
+
+        else:
+            raise NotImplementedError("There is no loss with that name.")
+
+
+    else:
+        raise ValueError("Variable derivative not set for loss function.")
