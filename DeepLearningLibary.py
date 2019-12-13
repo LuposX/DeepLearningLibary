@@ -7,6 +7,7 @@ Description: test NN
 
 from utility_libary import *
 
+import random
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
@@ -50,6 +51,7 @@ class NeuralNetwork:
         self.alpha: float = alpha
         self.loss_type = loss_type
         self.y: List = y
+        self.x: List = x
         self.input: List = self._add_bias(x)
 
         self.output_model: float = np.zeros(y.shape)
@@ -370,10 +372,12 @@ class NeuralNetwork:
         """
         if self.logger:
             self.logger.info("Train-method executed")
+
         for curr_epoch in range(epochs):
             if self.logger:
                 self.logger.debug("Current number of epochs: ", str(curr_epoch))
-            for idx, trainings_data in enumerate(x):
+
+            for idx, trainings_data in enumerate(self.x):
                 trainings_data_with_bias = self._add_bias(trainings_data)
 
                 self._full_forward(trainings_data_with_bias)
@@ -383,6 +387,12 @@ class NeuralNetwork:
                 self.x_train_loss_history.append(curr_epoch)
                 self.y_train_loss_history.append(
                     loss_type_choice(y=y[idx], y_hat=self.output_model.flatten(), loss_type=self.loss_type))
+
+            # shuffle our data in order to get a good generalization
+            tmp_zip_shuffle = list(zip(self.x, self.y))
+            random.shuffle(tmp_zip_shuffle)  # shuffle data-set
+            self.x, self.y = zip(*tmp_zip_shuffle)
+
 
     def predict(self):
         """
@@ -433,6 +443,7 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.1, 5, loss_type="cross-entropy")
-    NeuralNetwork_Inst.train(how_often=20, epochs=100)
-    # visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.03, 5, loss_type="cross-entropy")
+    NeuralNetwork_Inst.train(how_often=20, epochs=400)
+    NeuralNetwork_Inst.predict()
+    visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history)
