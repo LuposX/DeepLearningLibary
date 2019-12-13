@@ -110,7 +110,7 @@ class NeuralNetwork:
         Parameters
         ----------
         i : int
-            A paramter that gets hand over. Current Iteration in a foor loop.
+            A parameter that gets hand over. Current Iteration in a foor loop.
         how_often: int
              Is used to determine the frequently of updates from the training progress.
 
@@ -256,7 +256,7 @@ class NeuralNetwork:
         self.layer_value_cache = {}  # delete cache used from previous iteration
         for idx in range(0, len(self.nn_architecture) - 1):
             if self.logger:
-                self.logger.debug("Current-index (full_forward methode): " + str(idx))
+                self.logger.debug("Current-index (full_forward method): " + str(idx))
 
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
                 self.layer_value_cache.update({"z0": data})
