@@ -5,19 +5,8 @@ Date: 17.11.2019
 Description: test NN
 """
 
-from typing import List, Dict  # used for typehints
+from utility_libary import *
 
-import numpy as np  # used for forward pass, weight init, ect.
-
-# logging
-import logging  # used to log errors and info's in a file
-from datetime import date  # used to get a name for the log file
-import os  # used for creating a folder
-import pathlib
-
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
@@ -43,8 +32,7 @@ class NeuralNetwork:
         -------
         None
         """
-        self.level_of_debugging = level_of_debugging
-        self.logger: object = self.init_logging(self.level_of_debugging)  # initializing of logging
+        self.logger: object = init_logging(level_of_debugging)  # initializing of logging
         # Dimension checks
         self.check_input_output_dimension(x, y, nn_architecture)
 
@@ -68,15 +56,15 @@ class NeuralNetwork:
         self.weight_change_cache: List = []
 
         self.logger.info("__init__ executed")
-        
-        # for visuliozing
+
+        # for visualizing
         self.x_train_loss_history = []
         self.y_train_loss_history = []
 
         self.bias_weight_tmp = []
 
         self.loss_type = loss_type
-        
+
     def add_bias(self, x) -> List[float]:
         x = np.array([np.insert(x, 0, 1)])
         return x
@@ -119,10 +107,10 @@ class NeuralNetwork:
         """
         if not derivative:
             if self.loss_type.lower() == "mse":
-                return self.loss_mse(y, y_hat)
+                return loss_mse(y, y_hat)
 
             elif "cross" in self.loss_type.lower() and "entropy" in self.loss_type.lower():
-                return self.loss_cross_entropy(y=y, y_hat=y_hat)
+                return loss_cross_entropy(target=y, pred_target=y_hat)
 
             else:
                 raise NotImplementedError("There is no loss with that name.")
@@ -130,10 +118,10 @@ class NeuralNetwork:
 
         elif derivative:
             if self.loss_type.lower() == "mse":
-                return self.loss_mse_derivative(y, y_hat)
+                return loss_mse_derivative(y, y_hat)
 
             elif "cross" in self.loss_type.lower() and "entropy" in self.loss_type.lower():
-                return self.loss_cross_entropy_derivative(y=y, y_hat=y_hat)
+                return loss_cross_entropy_derivative(target=y, pred_target=y_hat)
 
             else:
                 raise NotImplementedError("There is no loss with that name.")
@@ -142,84 +130,8 @@ class NeuralNetwork:
         else:
             raise ValueError("Variable derivative not set for loss function.")
 
-    # mean square root
-    def loss_mse(self, y: List[float], y_hat: List[float]) -> List[float]:
-        loss = np.sum(1 / 2 * (y - y_hat) ** 2)
-        return loss
-
-    def loss_mse_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
-        y = np.array([y]).T
-        tmp_dev = -(y - y_hat)
-        loss_dev = np.array(tmp_dev)
-        return loss_dev
-
-    def loss_cross_entropy(self, y: List[float], y_hat: List[float]) -> List[float]:
-        loss = []
-
-        for idx, y_hat_item in enumerate(y_hat):
-            if y[idx] == 1:
-                tmp_loss = -np.log10(y_hat_item)
-                loss.append(tmp_loss)
-            else:
-                tmp_loss = -np.log10(1 - y_hat_item)
-                loss.append(tmp_loss)
-
-        loss = np.sum(loss)
-        return loss
-
-    def loss_cross_entropy_derivative(self, y: List[float], y_hat: List[float]) -> List[float]:
-
-        y = y.tolist()
-        y_hat = y_hat.flatten().tolist()
-
-        loss = []
-        for idx, y_hat_item in enumerate(y_hat):
-            if y[idx] == 1:
-                tmp_loss = -1 * (1 / float(y_hat_item))
-                loss.append(tmp_loss)
-            else:
-                tmp_loss = 1 / (1 - float(y_hat_item))
-                loss.append(tmp_loss)
-
-        return np.array(loss)
-
-    def tanh(self, x: List[float]) -> List[float]:
-        return 2 / (1 + np.exp(-2 * x)) - 1
-
-    def tanh_derivative(self, x: List[float]) -> List[float]:
-        return 1 - (self.tanh(x) ** 2)
-
-    def sigmoid(self, x: List[float]) -> List[float]:
-        return 1 / (1 + np.exp(-x))
-
-    def sigmoid_derivative(self, x: List[float]) -> List[float]:
-        return self.sigmoid(x) * (1 - self.sigmoid(x))
-
-    def relu(self, x: List[float]) -> List[float]:
-        return np.maximum(0, x)
-
-    def relu_derivative(self, x: List[float]) -> List[float]:
-        x[x <= 0] = 0
-        x[x > 0] = 1
-        return x
-
-    def linear(self, x: List[float]) -> List[float]:
-        return x
-
-    def activation_derivative(self, layer: Dict, curr_layer: List[float]) -> List[float]:
-        if layer["activation_function"] == "linear":
-            return np.array(self.linear(curr_layer))
-
-        elif layer["activation_function"] == "relu":
-            return np.array(self.relu_derivative(curr_layer))
-
-        elif layer["activation_function"] == "sigmoid":
-            return np.array(self.sigmoid_derivative(curr_layer))
-
-        else:
-            raise Exception("Activation function not supported!")
-
-    def communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float], how_often: int = 10) -> None:
+    def communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float],
+                      how_often: int = 10) -> None:
         """
         Gets executed from the method "train". Communicates information
         about the current status of training progress.
@@ -236,7 +148,7 @@ class NeuralNetwork:
         None
         """
         if curr_epoch % how_often == 0:
-            print("For iteration/trainings-example: #" + str(curr_epoch) + "/#"+ str(curr_trainingsdata))
+            print("For iteration/trainings-example: #" + str(curr_epoch) + "/#" + str(curr_trainingsdata))
             print("Input: " + str(data))
             print("Actual Output: " + str(target))
             print("Predicted Output: " + str(self.output_model.flatten()))
@@ -244,48 +156,6 @@ class NeuralNetwork:
             print("Value of last weight change: " + str(self.weight_change_cache[-1]))
             print("\n")
 
-    def init_logging(self, level_of_debugging: str) -> object:
-        """
-        Gets executed from the constructor "__init__". Initializes the logger.
-
-        Parameters
-        ----------
-        level_of_debugging: {"logging.DEBUG", "logging.INFO", "logging.CRITICAL", "logging.WARNING", "logging.ERROR"}
-            Which error get logged.
-
-        Returns
-        -------
-        Object
-            return a logger object which is used to log errors.
-        """
-        # creating a directory for "logs" if the directory doesnt exist
-        path = pathlib.Path.cwd()
-        name = "logs"
-        full_path = path / name
-        try:
-            if not os.path.isdir(full_path):
-                os.mkdir(full_path)
-        except OSError:
-            print("ERROR: Couldn't create a log folder.")
-
-        # create and configure logger
-        today = date.today()  # get current date
-        today_eu = today.strftime("%d-%m-%Y")  # european date format
-
-        LOG_FORMAT: str = "%(levelname)s  - %(asctime)s - %(message)s"  # logging format
-
-        logging.basicConfig(filename=full_path / str(today_eu + ".log"), level=level_of_debugging, format=LOG_FORMAT)
-        logger = logging.getLogger()
-
-        # Test logger
-        logger.info("------------------------------------------------")
-        logger.info("Start of the program")
-        logger.info("------------------------------------------------")
-
-        return logger
-
-    # TODO: "init_weights" is work in progress.
-    # TODO: "init_weights" init bias.
     def init_weights(self, custom_weights: bool, custom_weights_data: List) -> List[float]:
         """
         Gets executed from the constructor "__init__".
@@ -301,7 +171,8 @@ class NeuralNetwork:
 
             if not custom_weights:
                 # "self.nn_architecture[idx]["layer_size"] + 1" "+ 1" because we also have a bias term
-                weights_temp = 2 * np.random.rand(self.nn_architecture[idx + 1]["layer_size"], self.nn_architecture[idx]["layer_size"] + 1) - 1
+                weights_temp = 2 * np.random.rand(self.nn_architecture[idx + 1]["layer_size"],
+                                                  self.nn_architecture[idx]["layer_size"] + 1) - 1
 
                 self.weights.append(weights_temp)
 
@@ -328,7 +199,7 @@ class NeuralNetwork:
         """
 
         if layer["activation_function"] == "relu":
-            temp_acti = self.relu(x)
+            temp_acti = relu(x)
 
             # add bias to cache when not output layer
             if not layer["layer_type"] == "output_layer":
@@ -343,7 +214,7 @@ class NeuralNetwork:
             return temp_acti
 
         elif layer["activation_function"] == "sigmoid":
-            temp_acti = self.sigmoid(x)
+            temp_acti = sigmoid(x)
 
             # add bias to cache when not output layer
             if not layer["layer_type"] == "output_layer":
@@ -390,8 +261,8 @@ class NeuralNetwork:
 
         # the name of the key of the dict is the index of current layer
         idx_name = self.nn_architecture.index(layer)
-        tmp_dict = {"z" + str(idx_name):  tmp_curr_layer_for_chache}
-        self.layer_cache.update(tmp_dict)   # append the "z" value | not activated value
+        tmp_dict = {"z" + str(idx_name): tmp_curr_layer_for_chache}
+        self.layer_cache.update(tmp_dict)  # append the "z" value | not activated value
 
         curr_layer = self.activate_neuron(curr_layer, layer)
 
@@ -416,11 +287,13 @@ class NeuralNetwork:
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
                 self.layer_cache.update({"z0": data})
                 self.layer_cache.update({"a0": data})
-                self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1], idx=idx)  # "idx + 1" to fix issue regarding activation function
+                self.curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1],
+                                               idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
                 self.curr_layer = self.add_bias(self.curr_layer)
-                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1], idx=idx)
-            
+                self.curr_layer = self.forward(self.weights[idx], self.curr_layer, self.nn_architecture[idx + 1],
+                                               idx=idx)
+
         self.output_model = self.curr_layer
 
     # TODO: "backprop" is work in progress
@@ -443,7 +316,7 @@ class NeuralNetwork:
                 # calculating the error term
                 if layer["layer_type"] == "output_layer":
                     temp_idx = "z" + str(idx)
-                    d_a = self.activation_derivative(layer, self.layer_cache[temp_idx])
+                    d_a = activation_derivative(layer, self.layer_cache[temp_idx])
                     d_J = self.loss_type_choice(y=target, y_hat=self.output_model, derivative=True)
                     error_term = np.array([np.multiply(d_a.flatten(), d_J.flatten())])
                     self.error_term_cache.append(error_term)
@@ -455,7 +328,7 @@ class NeuralNetwork:
                     temp_idx = "z" + str(idx)
                     layer_cache_tmp_drop_bias = np.delete(self.layer_cache[temp_idx], 0, 1)
 
-                    d_a = self.activation_derivative(layer, layer_cache_tmp_drop_bias)
+                    d_a = activation_derivative(layer, layer_cache_tmp_drop_bias)
 
                     d_J = 0
                     for item in reversed(self.error_term_cache):
@@ -494,7 +367,8 @@ class NeuralNetwork:
 
         # insert bias in weights
         for i in range(0, len(self.weights)):
-            self.weights[i] = np.insert(self.weights[i], obj=0, values=self.bias_weight_tmp[i], axis=1)  # insert the weights for the biases
+            self.weights[i] = np.insert(self.weights[i], obj=0, values=self.bias_weight_tmp[i],
+                                        axis=1)  # insert the weights for the biases
 
     # TODO: "train" is work in progress
     def train(self, how_often, epochs=20) -> None:
@@ -515,7 +389,6 @@ class NeuralNetwork:
         self.logger.info("Train-method executed")
         for curr_epoch in range(epochs):
             for idx, trainings_data in enumerate(x):
-
                 trainings_data_with_bias = self.add_bias(trainings_data)
 
                 self.full_forward(trainings_data_with_bias)
@@ -533,7 +406,7 @@ class NeuralNetwork:
         print("--------------------")
 
         running = True
-        while(running):
+        while (running):
 
             pred_data = []
             for i in range(0, self.nn_architecture[0]["layer_size"]):
@@ -557,17 +430,6 @@ class NeuralNetwork:
             else:
                 running = True
 
-    def visulize(self):
-        data = {"x": self.x_train_loss_history, "train": self.y_train_loss_history}
-        data = pd.DataFrame(data, columns=["x", "train"])
-
-        sns.set_style("darkgrid")
-        plt.figure(figsize=(12, 6))
-        sns.lineplot(x="x", y="train", data=data, label="train", color="orange")
-        plt.xlabel("Time In Epochs")
-        plt.ylabel("Loss")
-        plt.title("Loss over Time")
-        plt.show()
 
 if __name__ == "__main__":
     # data for nn and target
@@ -579,11 +441,11 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
-    weights_data = [np.array([[0.5, 0.1, 0.3, 0.5], [0.5, 0.2, 0.4, 0.6]], dtype=float), np.array([[0.5, 0.7, 0.9], [0.5, 0.8, 0.1]], dtype=float)]
+    weights_data = [np.array([[0.5, 0.1, 0.3, 0.5], [0.5, 0.2, 0.4, 0.6]], dtype=float),
+                    np.array([[0.5, 0.7, 0.9], [0.5, 0.8, 0.1]], dtype=float)]
     weights_data = weights_data
 
-    #, custom_weights=True, custom_weights_data=weights_data
+    # , custom_weights=True, custom_weights_data=weights_data
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.1, 5, loss_type="cross-entropy")
     NeuralNetwork_Inst.train(how_often=20, epochs=300)
-    NeuralNetwork_Inst.visulize()
-    #NeuralNetwork_Inst.predict()
+    # visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history)
