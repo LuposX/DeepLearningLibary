@@ -10,7 +10,8 @@ from utility_libary import *
 
 class NeuralNetwork:
     def __init__(self, x: List[float], y: List[float], nn_architecture: List[Dict], alpha: float, seed: int,
-                 custom_weights_data: List = [], logger: object = None, loss_type: str = "mse", custom_weights: bool = False,) -> None:
+                 custom_weights_data: List = [], logger: object = None, loss_type: str = "mse",
+                 custom_weights: bool = False, ) -> None:
         """
         Constructor of the class Neural Network.
 
@@ -56,7 +57,7 @@ class NeuralNetwork:
         self.error_term_cache: List = []
         self.weight_change_cache: List = []
         self.x_train_loss_history: List = []  # for visualizing
-        self.y_train_loss_history: List = []   # for visualizing
+        self.y_train_loss_history: List = []  # for visualizing
 
         self.weights: List = []  # np.array([])
         self.init_weights(custom_weights, custom_weights_data)  # initializing of weights
@@ -100,7 +101,6 @@ class NeuralNetwork:
             "layer_size"], 'Check the number of output Neurons and "Y".'  # check if the first element in "y" has the right shape
         assert len(x) == len(y), "Check that X and Y have the corresponding values."
 
-
     def communication(self, curr_epoch: int, curr_trainingsdata: int, data: List[float], target: List[float],
                       how_often: int = 10) -> None:
         """
@@ -119,13 +119,17 @@ class NeuralNetwork:
         None
         """
         if curr_epoch % how_often == 0:
-            print("For iteration/trainings-example: #" + str(curr_epoch) + "/#" + str(curr_trainingsdata))
-            print("Input: " + str(data))
-            print("Actual Output: " + str(target))
-            print("Predicted Output: " + str(self.output_model.flatten()))
-            print("Loss: " + str(loss_type_choice(y=target, y_hat=self.output_model.flatten(), loss_type=self.loss_type)))
-            print("Value of last weight change: " + str(self.weight_change_cache[-1]))
-            print("\n")
+            print(
+                f"For iteration/trainings-example: #" + str(curr_epoch) + "/#" + str(curr_trainingsdata),
+                f"Input: {data}",
+                f"Actual Output: {target}",
+                f"Predicted Output: {self.output_model.flatten()}",
+                f"Loss: {loss_type_choice(y=target, y_hat=self.output_model.flatten(), loss_type=self.loss_type)}",
+                f"Value of last weight change: ",
+                f"{self.weight_change_cache[-1]}"
+                "\n",
+                sep="\n"
+            )
 
     def init_weights(self, custom_weights: bool, custom_weights_data: List) -> List[float]:
         """
@@ -153,7 +157,7 @@ class NeuralNetwork:
 
         return self.weights
 
-    def activate_neuron(self, x: List[float], layer: Dict) -> List[float]:
+    def _activate_neuron(self, x: List[float], layer: Dict) -> List[float]:
         """
         Gets executed from the method "forward" and "full_forward".
         Activates the neurons in the current layer with the specified activation function.
@@ -203,7 +207,7 @@ class NeuralNetwork:
         else:
             raise NotImplementedError("Activation function not supported!")
 
-    def forward(self, weight: List[float], x: List[float], layer: Dict, idx: int) -> List[float]:
+    def _forward(self, weight: List[float], x: List[float], layer: Dict, idx: int) -> List[float]:
         """
         Gets executed from the method "full_forward". This method make´s one
         forward propagation step.
@@ -236,12 +240,11 @@ class NeuralNetwork:
         tmp_dict = {"z" + str(idx_name): tmp_curr_layer_for_chache}
         self.layer_value_cache.update(tmp_dict)  # append the "z" value | not activated value
 
-        curr_layer = self.activate_neuron(curr_layer, layer)
+        curr_layer = self._activate_neuron(curr_layer, layer)
 
         return curr_layer
 
-    # TODO: "full_forward" is work in progress
-    def full_forward(self, data):
+    def _full_forward(self, data):
         """
         Gets executed from the method "forward_backprop". Makes the full forward propagation
         through the whole Architecture of the Neural Network.
@@ -261,17 +264,16 @@ class NeuralNetwork:
             if self.nn_architecture[idx]["layer_type"] == "input_layer":
                 self.layer_value_cache.update({"z0": data})
                 self.layer_value_cache.update({"a0": data})
-                curr_layer = self.forward(self.weights[idx], data, self.nn_architecture[idx + 1],
-                                               idx=idx)  # "idx + 1" to fix issue regarding activation function
+                curr_layer = self._forward(self.weights[idx], data, self.nn_architecture[idx + 1],
+                                           idx=idx)  # "idx + 1" to fix issue regarding activation function
             else:
                 curr_layer = self._add_bias(curr_layer)
-                curr_layer = self.forward(self.weights[idx], curr_layer, self.nn_architecture[idx + 1],
-                                               idx=idx)
+                curr_layer = self._forward(self.weights[idx], curr_layer, self.nn_architecture[idx + 1],
+                                           idx=idx)
 
         self.output_model = curr_layer
 
-    # TODO: "backprop" is work in progress
-    def backprop(self, target: List[float]) -> None:  # application of the chain rule to find derivative
+    def _backprop(self, target: List[float]) -> None:  # application of the chain rule to find derivative
         """
         Gets executed from the method "forward_backprop". This method is about
         the backpropagation of the Neural Network.
@@ -351,7 +353,6 @@ class NeuralNetwork:
             self.weights[i] = np.insert(self.weights[i], obj=0, values=bias_weight_tmp[i],
                                         axis=1)  # insert the weights for the biases
 
-    # TODO: "train" is work in progress
     def train(self, how_often, epochs=20) -> None:
         """
         Execute this method to start training your neural network.
@@ -375,12 +376,13 @@ class NeuralNetwork:
             for idx, trainings_data in enumerate(x):
                 trainings_data_with_bias = self._add_bias(trainings_data)
 
-                self.full_forward(trainings_data_with_bias)
-                self.backprop(self.y[idx])
+                self._full_forward(trainings_data_with_bias)
+                self._backprop(self.y[idx])
                 self.communication(curr_epoch, idx, target=self.y[idx], data=trainings_data, how_often=how_often)
 
                 self.x_train_loss_history.append(curr_epoch)
-                self.y_train_loss_history.append(loss_type_choice(y=y[idx], y_hat=self.output_model.flatten(), loss_type=self.loss_type))
+                self.y_train_loss_history.append(
+                    loss_type_choice(y=y[idx], y_hat=self.output_model.flatten(), loss_type=self.loss_type))
 
     def predict(self):
         """
@@ -405,7 +407,7 @@ class NeuralNetwork:
             pred_data.insert(0, 1)  # append bias
             pred_data = np.asarray([pred_data], dtype=float)
 
-            self.full_forward(data=pred_data)
+            self._full_forward(data=pred_data)
 
             print("Input: " + str(pred_data_without_bias))
             print("Predicted Output: ", self.output_model.flatten())
@@ -422,25 +424,6 @@ class NeuralNetwork:
 
 
 if __name__ == "__main__":
-    # create a directory for "logs" if the directory doesn't exist
-    path = pathlib.Path.cwd()
-    name = "logs"
-    full_path = path / name
-    try:
-        if not os.path.isdir(full_path):
-            os.mkdir(full_path)
-    except OSError:
-        print("ERROR: Couldn't create a log folder.")
-
-    # create and configure logger
-    today = date.today()  # get current date
-    today_eu = today.strftime("%d-%m-%Y")  # european date format
-
-    LOG_FORMAT: str = "%(levelname)s  - %(asctime)s - %(message)s"  # logging format
-
-    logging.basicConfig(filename=full_path / str(today_eu + ".log"), level=logging.CRITICAL, format=LOG_FORMAT)
-    logger = logging.getLogger()
-
     # data for nn and target
     x = np.array([[1, 0, 0], [1, 1, 1], [0, 1, 1], [1, 0, 1]], dtype=float)
     y = np.array([[0, 1, 1], [0, 0, 0], [1, 0, 0], [0, 1, 0]], dtype=float)
