@@ -6,7 +6,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def visualize(x_train_loss_history: List[int], y_train_loss_history: List[float]):
+def visualize(x_train_loss_history: List[int], y_train_loss_history: List[float], loss_type):
     """
     Used to visualize the loss of the neural network.
     """
@@ -18,7 +18,7 @@ def visualize(x_train_loss_history: List[int], y_train_loss_history: List[float]
     sns.lineplot(x="x", y="train", data=data, label="train", color="orange")
     plt.xlabel("Time In Epochs")
     plt.ylabel("Loss")
-    plt.title("Loss over Time")
+    plt.title(f"Loss over Time: {loss_type}")
     plt.show()
 
 

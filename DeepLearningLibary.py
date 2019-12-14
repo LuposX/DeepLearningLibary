@@ -386,19 +386,12 @@ class NeuralNetwork:
 
                 self.x_train_loss_history.append(curr_epoch)
                 self.y_train_loss_history.append(
-                    loss_type_choice(y=y[idx], y_hat=self.output_model.flatten(), loss_type=self.loss_type))
+                    loss_type_choice(y=self.y[idx], y_hat=self.output_model.flatten(), loss_type=self.loss_type))
 
             # shuffle our data in order to get a good generalization
             tmp_zip_shuffle = list(zip(self.x, self.y))
-            print("---------------")
-            print("x: ", self.x)
-            print("y: ", self.y)
-            print(" ")
             random.shuffle(tmp_zip_shuffle)  # shuffle data-set
             self.x, self.y = zip(*tmp_zip_shuffle)
-            print("after shuffle x: ", self.x)
-            print("after shuffl y: ", self.y)
-            print(" ")
 
 
     def predict(self):
@@ -451,7 +444,7 @@ if __name__ == "__main__":
                        {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "sigmoid"},
                        {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, loss_type="cross-entropy")
-    NeuralNetwork_Inst.train(how_often=20, epochs=200)
-    NeuralNetwork_Inst.predict()
-    visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.8, 5, loss_type="cross-entropy")
+    NeuralNetwork_Inst.train(how_often=20, epochs=300)
+    # NeuralNetwork_Inst.predict()
+    visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history, "cross-entropy")
