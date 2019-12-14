@@ -191,6 +191,7 @@ class NeuralNetwork:
 
             return temp_acti
 
+
         elif layer["activation_function"] == "sigmoid":
             temp_acti = sigmoid(x)
 
@@ -205,6 +206,23 @@ class NeuralNetwork:
             self.layer_value_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
 
             return temp_acti
+
+
+        elif layer["activation_function"] == "tanh":
+            temp_acti = tanh(x)
+
+            # add bias to cache when not output layer
+            if not layer["layer_type"] == "output_layer":
+                tmp_temp_acti_for_chache = self._add_bias(temp_acti)
+            else:
+                tmp_temp_acti_for_chache = temp_acti.T
+
+            # the name of the key of the dict is the index of current layer
+            idx_name = self.nn_architecture.index(layer)
+            self.layer_value_cache.update({"a" + str(idx_name): tmp_temp_acti_for_chache})
+
+            return temp_acti
+
 
         else:
             raise NotImplementedError("Activation function not supported!")
@@ -445,6 +463,6 @@ if __name__ == "__main__":
                        {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
 
     NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.8, 5, loss_type="cross-entropy")
-    NeuralNetwork_Inst.train(how_often=20, epochs=300)
+    NeuralNetwork_Inst.train(how_often=20, epochs=100)
     # NeuralNetwork_Inst.predict()
     visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history, "cross-entropy")
