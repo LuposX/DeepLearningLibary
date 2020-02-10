@@ -285,7 +285,7 @@ class NeuralNetwork:
                 self.layer_value_cache.update({"z0": data})
                 self.layer_value_cache.update({"a0": data})
                 curr_layer = self._forward(self.weights[idx], data, self.nn_architecture[idx + 1],
-                                           idx=idx)  # "idx + 1" to fix issue regarding activation function
+                                           idx=idx)
             else:
                 curr_layer = self._add_bias(curr_layer)
                 curr_layer = self._forward(self.weights[idx], curr_layer, self.nn_architecture[idx + 1],
@@ -332,6 +332,7 @@ class NeuralNetwork:
 
                     d_J = 0
                     for item in reversed(self.error_term_cache):
+                        #assert False, "fix that shit in backprop"
                         tmp_matrix_weight = np.asarray(self.weights[idx - 1])
                         bias_weight_tmp.append([tmp_matrix_weight.T[0]])
 
@@ -342,7 +343,7 @@ class NeuralNetwork:
                     error_term = error_term.T
                     self.error_term_cache.append(error_term)
 
-                err_temp = error_term.T
+                err_temp = self.error_term_cache[-1].T
                 temp_idx = "a" + str(idx - 1)
                 cache_tmp = self.layer_value_cache[temp_idx]
                 cache_tmp = np.delete(cache_tmp, 0, 1)  # delete bias
@@ -458,11 +459,14 @@ if __name__ == "__main__":
     #y = np.array([[1], [0], [0], [1]], dtype = float)
 
     # nn_architecture is WITH input-layer and output-layer
-    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none"},
-                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "sigmoid"},
-                       {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid"}]
+    nn_architecture = [{"layer_type": "input_layer", "layer_size": 3, "activation_function": "none", "idx": 0},
+                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu", "idx": 1},
+                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu", "idx": 2},
+                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu", "idx": 2},
+                       {"layer_type": "hidden_layer", "layer_size": 3, "activation_function": "relu", "idx": 2},
+                       {"layer_type": "output_layer", "layer_size": 3, "activation_function": "sigmoid", "idx": 3}]
 
-    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.8, 5, loss_type="cross-entropy")
-    NeuralNetwork_Inst.train(how_often=20, epochs=100)
+    NeuralNetwork_Inst = NeuralNetwork(x, y, nn_architecture, 0.3, 5, loss_type="cross-entropy")
+    NeuralNetwork_Inst.train(how_often=20, epochs=160)
     # NeuralNetwork_Inst.predict()
     visualize(NeuralNetwork_Inst.x_train_loss_history, NeuralNetwork_Inst.y_train_loss_history, "cross-entropy")
